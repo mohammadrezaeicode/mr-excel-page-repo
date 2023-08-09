@@ -1,0 +1,62 @@
+[
+  {
+    "id": "001",
+    "full name": "John Doe",
+    "living cost": 2500,
+    "birth date": "1995-08-15"
+  },
+  {
+    "id": "002",
+    "full name": "Alice Johnson",
+    "living cost": 2000,
+    "birth date": "1990-04-22"
+  },
+  {
+    "id": "003",
+    "full name": "Robert Smith",
+    "living cost": 2800,
+    "birth date": "1988-11-10"
+  },
+  {
+    "id": "004",
+    "full name": "Emily Brown",
+    "living cost": 1800,
+    "birth date": "2001-06-30"
+  },
+  {
+    "id": "005",
+    "full name": "Daniel Miller",
+    "living cost": 2200,
+    "birth date": "1993-07-12"
+  },
+  {
+    "id": "006",
+    "full name": "Sarah Wilson",
+    "living cost": 2100,
+    "birth date": "1998-02-18"
+  },
+  {
+    "id": "007",
+    "full name": "Jessica Davis",
+    "living cost": 2400,
+    "birth date": "1985-09-03"
+  },
+  {
+    "id": "008",
+    "full name": "Matthew Taylor",
+    "living cost": 2700,
+    "birth date": "1997-12-05"
+  },
+  {
+    "id": "009",
+    "full name": "Olivia Anderson",
+    "living cost": 1900,
+    "birth date": "2004-03-28"
+  },
+  {
+    "id": "010",
+    "full name": "Ethan Harris",
+    "living cost": 2300,
+    "birth date": "2000-11-15"
+  }
+]

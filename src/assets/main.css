@@ -1,0 +1,18 @@
+@import './base.css';
+html,
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+  box-sizing: border-box;
+}
+
+:root{
+  --c1:#EEEEEE;
+  --c2:#00ADB5;
+  --c3:#393E46;
+  --c4:#222831;
+  --c5:#14ecf840;
+}
+h2{
+  margin-top: 2rem;
+}
