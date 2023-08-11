@@ -73,14 +73,14 @@ const router = useRouter()
 // const props = defineProps(['name', 'items'])
 const select = useSelectStore()
 function goTo(href) {
-  console.log(href)
+  //console.log(href)
   router.push({ hash: href })
   document.querySelector(href).scrollIntoView({ behavior: 'smooth' })
 }
 // const navItems = reactive()
-// console.log(select.count.value, select)
+// //console.log(select.count.value, select)
 // select.$subscribe((val) => {
-//   console.log(val)
+//   //console.log(val)
 // })
 // let selected = ref(select.selected)
 
@@ -88,7 +88,7 @@ function goTo(href) {
 //   selected.value = index
 // }
 // watch(select.selected, async (newV, oldV) => {
-//   console.log(newV,oldV,"watch")
+//   //console.log(newV,oldV,"watch")
 // })
 </script>
 

@@ -69,7 +69,7 @@ export const useSelectStore = defineStore({
     },
 
     setSelect(num) {
-      console.log('changes')
+      //console.log('changes')
       this.selected = num
     }
   }
@@ -82,7 +82,7 @@ export const useSelectStore = defineStore({
 //   //   count.value++
 //   // }
 //   function setSelected(num) {
-//     console.log('first')
+//     //console.log('first')
 //     count.value == num
 //   }
 //   return { count, setSelected }

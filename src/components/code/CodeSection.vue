@@ -95,9 +95,9 @@
 import ExcelTable from 'mr-excel'
 import { onMounted, ref } from 'vue'
 let props = defineProps(['stringCode', 'type', 'exampleObject','notShowHiddien'])
-// console.log(props.exampleObject,'set')
+// //console.log(props.exampleObject,'set')
 // const rect = reactive(props)
-// console.log(stringCodes)
+// //console.log(stringCodes)
 const root = ref(null)
 const dialog = ref(false)
 const inCopyMode = ref(false)
@@ -106,7 +106,7 @@ function changeCodeDisplay() {
   displayCode.value = !displayCode.value
 }
 function copyClipboard() {
-  console.log(props.stringCode)
+  //console.log(props.stringCode)
   inCopyMode.value = true
   setTimeout(() => {
     inCopyMode.value = false
@@ -125,8 +125,8 @@ function generateExcel() {
   }
 }
 onMounted(() => {
-  console.log(root.value.getBoundingClientRect().top)
-  //   console.log('mounted', this.$refs.root)
+  //console.log(root.value.getBoundingClientRect().top)
+  //   //console.log('mounted', this.$refs.root)
   //   this.$el
 })
 </script>

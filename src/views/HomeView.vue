@@ -73,10 +73,12 @@ select.setNavBar(0)
 onMounted(() => {
   const idList = ['installation', 'using-a-package-manager', 'getting-started']
   idList.forEach((v) => {
-    // console.log(root.value.)
+    // //console.log(root.value.)
     items.push(document.querySelector('#' + v))
-    console.log(items)
+    //console.log(items)
   })
+  document.body.scrollTop = 0 // For Safari
+  document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
 })
 window.addEventListener('scroll', function () {
   let selIndex = -1
@@ -90,20 +92,20 @@ window.addEventListener('scroll', function () {
     } else {
       countNotchoosen++
     }
-    console.log(top, index, 's', countNotchoosen)
+    //console.log(top, index, 's', countNotchoosen)
   })
   if (countNotchoosen == items.length) {
     selIndex = items.length - 1
   }
-  console.log(selIndex, selTop, 'ooo', countNotchoosen)
+  //console.log(selIndex, selTop, 'ooo', countNotchoosen)
   select.setSelect(selIndex)
 })
 let codes = reactive({
   vitCdn: codeJson.cdnVite,
   cdnWebpack: codeJson.cdnWebpack,
-  npm: 'npm install excel-table',
-  yarn: 'yarn add excel-table',
-  pnpm: 'pnpm install excel-table',
+  npm: 'npm install mr-excel',
+  yarn: 'yarn add mr-excel',
+  pnpm: 'pnpm install mr-excel',
   ex1: generateExample(ex1.data, ex1.colorPalette, ex1.url, ex1.str),
   ex: generateExample(ex.data)
 })

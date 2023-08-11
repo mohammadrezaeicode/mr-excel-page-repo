@@ -5,6 +5,12 @@
       On this page, we aim to provide a more in-depth exploration of the library's future
       capabilities. We will also present examples for the most commonly required use cases.
     </p>
+    <p>
+      You can validate the examples by clicking on the download button located in the top-right
+      corner of each example section. By doing so, you can view or copy the example text using the
+      copy button and then paste it into the console. We have added the library to the window,
+      allowing you to access it directly within the console.
+    </p>
     <h2 id="general-option">General Option</h2>
     <p>
       Each sheet has options for customization. You can change the sheet name using <b>name</b>,
@@ -120,10 +126,12 @@ onMounted(() => {
     'conditional-styling'
   ]
   idList.forEach((v) => {
-    // console.log(root.value.)
+    // //console.log(root.value.)
     items.push(document.querySelector('#' + v))
-    console.log(items)
+    //console.log(items)
   })
+  document.body.scrollTop = 0 // For Safari
+  document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
 })
 window.addEventListener('scroll', function () {
   let selIndex = -1
@@ -142,12 +150,12 @@ window.addEventListener('scroll', function () {
     } else {
       countNotchoosen++
     }
-    console.log(top, index, 's', countNotchoosen)
+    //console.log(top, index, 's', countNotchoosen)
   })
   if (countNotchoosen == items.length) {
     selIndex = items.length - 1
   }
-  console.log(selIndex, selTop, 'ooo', countNotchoosen)
+  //console.log(selIndex, selTop, 'ooo', countNotchoosen)
   select.setSelect(selIndex)
 })
 let codes = reactive({

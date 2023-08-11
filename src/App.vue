@@ -8,6 +8,10 @@ import NavItems from './components/nav/NavItems.vue'
 import SubNavItem from './components/nav/SubNavItem.vue'
 
 const drawer = ref(true)
+import ExcelTable from 'mr-excel'
+window.global = ExcelTable
+window.self.ExcelTable = ExcelTable
+window.ExcelTable = ExcelTable
 
 // import HelloWorld from './components/HelloWorld.vue'
 </script>
@@ -74,8 +78,7 @@ const drawer = ref(true)
             fill="#F9ED69"
           />
         </svg>
-        <h3 class="text-center" style="color: var(--c2);">M.R Excel</h3>
-        
+        <h3 class="text-center" style="color: var(--c2)">M.R Excel</h3>
       </v-sheet>
       <v-divider class="my-3"></v-divider>
       <v-list
