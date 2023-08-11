@@ -10,31 +10,35 @@
       Our library offers comprehensive support for a wide range of features, including data
       formatting, formulas, styles, merged cells, and grouped rows.
     </p>
-    <h2 id="installation">Installation</h2>
-    <p>Via CDN</p>
+    <h2 id="installation">Installation via CDN</h2>
     <p>
-      You can utilize our library, which comes bundled with Vite, by including the following link:
+      Harness the power of our bundled library with <b>Vite</b> by incorporating it into your
+      project through a CDN. Simply include the following link to seamlessly integrate the library:
     </p>
-    <CodeSection :stringCode="codes.vitCdn" :type="'html'"> </CodeSection>
+    <CodeSection :stringCode="codes.vitCdn" :type="'html'" :notShowHiddien="true"> </CodeSection>
     <p>
-      <b>Alternatively</b>, you have the option to use the bundle with Webpack by incorporating the
-      link provided below:
+      <b>Alternatively</b>, you have the option to use the bundle with <b>Webpack</b> by
+      incorporating the link provided below:
     </p>
-    <CodeSection :stringCode="codes.cdnWebpack" :type="'html'"> </CodeSection>
+    <CodeSection :stringCode="codes.cdnWebpack" :type="'html'" :notShowHiddien="true">
+    </CodeSection>
     <p>
       Easily integrate our library into your project using either of these methods, and unlock
       efficient generation of Excel tables with exceptional flexibility.
     </p>
-    <h2 id="using-a-package-manager">Using a Package Manager</h2>
+    <h2 id="using-a-package-manager">Installation via Package Manager</h2>
     <p>
       To seamlessly integrate our library, you can install it using your preferred package manager:
     </p>
-    <p>Via npm:</p>
-    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'"> </CodeSection>
-    <p>Using yarn:</p>
-    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'"> </CodeSection>
-    <p>Alternatively, you have the option to use pnpm:</p>
-    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'"> </CodeSection>
+    <p>Via <b>npm</b>:</p>
+    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'" :notShowHiddien="true">
+    </CodeSection>
+    <p>Using <b>yarn</b>:</p>
+    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'" :notShowHiddien="true">
+    </CodeSection>
+    <p>Alternatively, you have the option to use <b>pnpm</b>:</p>
+    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'" :notShowHiddien="true">
+    </CodeSection>
     <p>
       Choose the package manager that suits your workflow, and effortlessly bring the power of our
       library into your project, enabling smooth generation of Excel tables with ease and
@@ -45,20 +49,27 @@
       After adding the library to your project, generating XLSX files becomes straightforward. You
       can achieve this by creating a data object similar to the code snippet below:
     </p>
-    <CodeSection :stringCode="codes.ex1" :type="'javascript'" :excelObject="ex1"> </CodeSection>
+    <CodeSection :stringCode="codes.ex" :type="'javascript'" :exampleObject="ex"> </CodeSection>
+    <p>
+      Here's another example where we generate an Excel file with styles, formulas, and a variety of
+      additional features.
+    </p>
+    <CodeSection :stringCode="codes.ex1" :type="'javascript'" :exampleObject="ex1"> </CodeSection>
   </v-container>
 </template>
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
 import codeJson from '../strings/code.json'
-import CodeSection from '../components/code/codeSection.vue'
-import { ex1 } from '../dataset/example'
+import CodeSection from '@/components/code/codeSection.vue'
+import { ex1, ex } from '../dataset/example'
 import { generateExample } from '../utils/generate'
 import { useSelectStore } from '@/stores/select'
+
 const root = ref(null)
 let items = []
 const select = useSelectStore()
+select.setNavBar(0)
 onMounted(() => {
   const idList = ['installation', 'using-a-package-manager', 'getting-started']
   idList.forEach((v) => {
@@ -73,7 +84,7 @@ window.addEventListener('scroll', function () {
   let countNotchoosen = 0
   items.forEach((v, index) => {
     const top = v.getBoundingClientRect().top
-    if (top > 0 && (selTop < 0 || selTop > top)) {
+    if (top >= 0 && (selTop < 0 || selTop > top)) {
       selTop = top
       selIndex = index
     } else {
@@ -93,6 +104,7 @@ let codes = reactive({
   npm: 'npm install excel-table',
   yarn: 'yarn add excel-table',
   pnpm: 'pnpm install excel-table',
-  ex1: generateExample(ex1.data, ex1.colorPalette, ex1.url)
+  ex1: generateExample(ex1.data, ex1.colorPalette, ex1.url, ex1.str),
+  ex: generateExample(ex.data)
 })
 </script>

@@ -14,12 +14,12 @@
           v-for="(item, index) in navitem.childs"
           :key="item.name + '' + index"
           :style="{
-            background: selected.up == jIndex && selected.down == index ? 'var(--c5)' : ''
+            background: select.navIndex == index ? 'var(--c5)' : ''
           }"
           :class="[
             'tes',
             {
-              selected: selected.up == jIndex && selected.down == index
+              selected: select.navIndex == index
             }
           ]"
         >
@@ -27,9 +27,9 @@
             ><v-btn
               class="mn-uniqe w-100"
               style="text-transform: none"
-              :color="selected.up == jIndex && selected.down == index ? 'var(--c2)' : ''"
+              :color="select.navIndex == index ? 'var(--c2)' : ''"
               variant="text"
-              @click.prevent="changeSelected(jIndex, index, item.path)"
+              @click.prevent="changeSelected(index, 0, item.path)"
             >
               {{ item.name }}
             </v-btn></span
@@ -42,8 +42,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 const router = useRouter()
+import { useSelectStore } from '@/stores/select'
+// const props = defineProps(['name', 'items'])
+const select = useSelectStore()
 const navItems = ref([
   {
     name: 'interduction',
@@ -57,7 +60,8 @@ const navItems = ref([
         path: '/examples'
       },
       {
-        name: 'API'
+        name: 'API',
+        path: '/api'
       }
     ]
   }
@@ -73,9 +77,10 @@ const navItems = ref([
   //   ]
   // }
 ])
-let selected = ref({ up: 0, down: 0 })
+// let selected = ref({ up: 0, down: 0 })
 function changeSelected(up, down, path) {
-  selected.value = { up, down }
+  // selected.value = { up, down }
+  select.setNavBar(up)
   router.push({ path })
 }
 let openSection = ref({

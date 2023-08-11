@@ -1,6 +1,10 @@
 <template>
   <ul>
-    <li class="clickable" v-for="(navitem, jIndex) in select.navItems" :key="navitem.name + '' + jIndex">
+    <li
+      class="clickable"
+      v-for="(navitem, jIndex) in select.navItems"
+      :key="navitem.name + '' + jIndex"
+    >
       <div class="d-flex justify-content-center align-item-center">{{ navitem.name }}</div>
       <ul>
         <li
@@ -14,16 +18,47 @@
             }
           ]"
         >
-          <span class="nav-right-uniqe "
+          <span class="nav-right-uniqe"
             ><v-btn
               class="mn-uniqe w-100"
               :color="select.selected == index ? 'var(--c2)' : ''"
               variant="text"
-              @click.prevent="select.setSelect(index)"
+              @click.prevent="
+                select.setSelect(index);
+                goTo(item.href)
+              "
             >
               {{ item.name }}
             </v-btn></span
           >
+          <ul v-if="item.childs">
+            <li
+              v-for="(item1, index1) in item.childs"
+              :key="item1.name + '*' + index1"
+              :style="{}"
+              :class="[
+                'tes',
+                'inner',
+                {
+                  selected: select.selected == index1 + navitem.childs.length
+                }
+              ]"
+            >
+              <span class="nav-right-uniqe"
+                ><v-btn
+                  class="mn-uniqe w-100"
+                  :color="select.selected == index1 + navitem.childs.length ? 'var(--c2)' : ''"
+                  variant="text"
+                  @click.prevent="
+                    select.setSelect(index1 + navitem.childs.length);
+                    goTo(item.href)
+                  "
+                >
+                  {{ item1.name }}
+                </v-btn></span
+              >
+            </li>
+          </ul>
         </li>
       </ul>
     </li>
@@ -33,9 +68,15 @@
 <script setup>
 // import { reactive } from 'vue'
 import { useSelectStore } from '@/stores/select'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 // const props = defineProps(['name', 'items'])
 const select = useSelectStore()
-
+function goTo(href) {
+  console.log(href)
+  router.push({ hash: href })
+  document.querySelector(href).scrollIntoView({ behavior: 'smooth' })
+}
 // const navItems = reactive()
 // console.log(select.count.value, select)
 // select.$subscribe((val) => {
@@ -58,6 +99,10 @@ li {
 .clickable {
   cursor: pointer;
   user-select: none;
+}
+.inner {
+  margin-bottom: 10px;
+  padding-left: 20px;
 }
 li.tes {
   border-left: 1px solid var(--c1);

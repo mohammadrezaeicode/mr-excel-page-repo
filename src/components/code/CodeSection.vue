@@ -1,57 +1,110 @@
 !
 <template>
-  <div class="code-display d-flex flex-column" ref="root" @click="copyClipboard">
-    <div class="px-7 type-header">
-      {{ type }}
-    </div>
-    <div class="code-header d-flex px-7">
-      <div class="ml-auto"></div>
-
-      <v-tooltip text="Copy Source" location="top">
-        <template v-slot:activator="{ props }">
-          <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
-          <span v-bind="props" class="icons" @click="copyClipboard">
-            <v-icon large icon="mdi-content-copy" v-if="!inCopyMode"></v-icon>
-            <v-icon large icon="mdi-check" v-else></v-icon>
-          </span>
-        </template>
-      </v-tooltip>
-      <!-- <v-tooltip text="show " location="top">
+  <div class="mx-0 px-0 d-flex flex-column">
+    <div class="code-display d-flex flex-column mt-2 mb-5" ref="root">
+      <div class="px-7 type-header">
+        {{ type }}
+      </div>
+      <div class="code-header d-flex">
+        <div class="ml-auto"></div>
+        <v-tooltip text="Show code" location="top" v-if="!notShowHiddien">
+          <template v-slot:activator="{ props }">
+            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
+            <span v-bind="props" class="icons" @click="changeCodeDisplay">
+              <v-icon color="var(--c3)" icon="mdi-chevron-up" v-if="displayCode"></v-icon>
+              <v-icon color="var(--c3)" icon="mdi-code-tags" v-else></v-icon>
+            </span>
+          </template>
+        </v-tooltip>
+        <v-tooltip text="Copy Source" location="top">
+          <template v-slot:activator="{ props }">
+            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
+            <span v-bind="props" class="icons" @click="copyClipboard">
+              <v-icon large icon="mdi-content-copy" v-if="!inCopyMode"></v-icon>
+              <v-icon large icon="mdi-check" v-else></v-icon>
+            </span>
+          </template>
+        </v-tooltip>
+        <!-- <v-tooltip text="show " location="top">
         <template v-slot:activator="{ props }">
           <span v-bind="props" class="icons" @click="copyClipboard">
             <v-icon large icon="mdi-code-tags"></v-icon>
           </span>
         </template>
       </v-tooltip> -->
-      <v-tooltip text="Download result" location="top" v-if="excelObject">
-        <template v-slot:activator="{ props }">
-          <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
-          <span v-bind="props" class="icons" @click="generateExcel">
-            <v-icon large icon="mdi-download"></v-icon>
-          </span>
-        </template>
-      </v-tooltip>
-      <!-- <v-icon icon="mdi-code-tags"></v-icon>
-      <v-icon color="var(--c3)" icon="mdi-chevron-up"></v-icon>
-      
-      <v-icon color="var(--c3)" icon="mdi-image-area"></v-icon> -->
-    </div>
-    <div class="code-content px-7 py-5">
-      <pre>
+        <v-tooltip text="Download result" location="top" v-if="exampleObject">
+          <template v-slot:activator="{ props }">
+            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
+            <span v-bind="props" class="icons" @click="generateExcel">
+              <v-icon large icon="mdi-download"></v-icon>
+            </span>
+          </template>
+        </v-tooltip>
+        <v-menu
+          :open-on-hover="true"
+          :close-delay="100"
+          :offset="[0, 75, 0, 0]"
+          v-if="exampleObject && exampleObject.imageFullName"
+        >
+          <template v-slot:activator="{ props }">
+            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
+            <span v-bind="props" class="icons" @click="dialog = true">
+              <img
+                :src="'/img/' + exampleObject.imageFullName"
+                alt="output result"
+                height="22"
+                width="22"
+                style="margin-bottom: -6px"
+              />
+            </span>
+          </template>
+          <img :src="'/img/' + exampleObject.imageFullName" alt="output result" width="150" />
+        </v-menu>
+        <v-dialog v-model="dialog" width="auto">
+          <v-card>
+            <v-toolbar dark color="var(--c2)">
+              <v-btn icon dark @click="dialog = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <h4>Display result</h4>
+              <v-spacer></v-spacer>
+            </v-toolbar>
+            <img :src="'/img/' + exampleObject.imageFullName" alt="output result" />
+          </v-card>
+        </v-dialog>
+
+        <!-- <v-icon color="var(--c3)" icon="mdi-image-area"></v-icon>
+       -->
+      </div>
+      <div class="code-content px-7 py-5" v-if="displayCode">
+        <pre>
 <code>{{stringCode}}</code>
 </pre>
+      </div>
     </div>
+    <img
+      class="mx-auto"
+      height="250"
+      :src="'/img/' + exampleObject.imageFullName"
+      v-if="exampleObject && exampleObject.imageFullName && !displayCode"
+    />
   </div>
 </template>
 
 <script setup>
 import ExcelTable from 'mr-excel'
 import { onMounted, ref } from 'vue'
-let props = defineProps(['stringCode', 'type', 'excelObject'])
+let props = defineProps(['stringCode', 'type', 'exampleObject','notShowHiddien'])
+// console.log(props.exampleObject,'set')
 // const rect = reactive(props)
 // console.log(stringCodes)
 const root = ref(null)
+const dialog = ref(false)
 const inCopyMode = ref(false)
+const displayCode = ref(true)
+function changeCodeDisplay() {
+  displayCode.value = !displayCode.value
+}
 function copyClipboard() {
   console.log(props.stringCode)
   inCopyMode.value = true
@@ -61,7 +114,15 @@ function copyClipboard() {
   navigator.clipboard.writeText(props.stringCode)
 }
 function generateExcel() {
-  ExcelTable.generateExcel(props.excelObject)
+  if (props.exampleObject.data && props.exampleObject.data.notSave) {
+    ExcelTable.generateExcel(props.exampleObject.data).then((res) => {
+      var url = window.URL.createObjectURL(res)
+      window.location.assign(url)
+      return res
+    })
+  } else {
+    ExcelTable.generateExcel(props.exampleObject.data)
+  }
 }
 onMounted(() => {
   console.log(root.value.getBoundingClientRect().top)
@@ -113,7 +174,8 @@ onMounted(() => {
 }
 .code-header {
   position: sticky;
-  top: 100px;
+  /* top: 100px; */
+  top: 0;
 }
 .code-display {
   position: relative;

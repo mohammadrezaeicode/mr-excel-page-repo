@@ -1,0 +1,65 @@
+'examples',
+'general-option',
+'header-option',
+'formula-option',
+'styles-format-options',
+'merging-cells-options',
+'group-rows-options',
+'complex-options',
+'adjusting-key-properties-and-row-height',
+'conditional-styling',
+
+
+notSave	boolean	               
+creator	string	               
+created	string	               
+modified	string	           
+numberOfColumn	               
+createType	string	           
+mapSheetDataOption	 any	   
+styles	Styles	               
+sheet	Sheet[]	               
+
+
+fg	string	            
+fontColor	string	    
+fontFamily	string	    
+size	number      	
+index	number      	
+alignment           	
+border	BorderOption 	
+format	string	        
+
+
+
+
+horizontal
+vertical
+wrapText
+shrinkToFit
+readingOrder
+textRotation
+indent
+rtl
+ltr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
