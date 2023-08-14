@@ -68,13 +68,13 @@
 <script setup>
 // import { reactive } from 'vue'
 import { useSelectStore } from '@/stores/select'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+// import { useRouter } from 'vue-router'
+// const router = useRouter()
 // const props = defineProps(['name', 'items'])
 const select = useSelectStore()
 function goTo(href) {
   //console.log(href)
-  router.push({ hash: href })
+  // router.push({ hash: href })
   document.querySelector(href).scrollIntoView({ behavior: 'smooth' })
 }
 // const navItems = reactive()

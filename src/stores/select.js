@@ -22,6 +22,17 @@ const listOfNavItems = [
         { href: '#merging-cells-options', name: 'Merging Cells Options' },
         { href: '#group-rows-options', name: 'Group Rows Options' },
         {
+          href: '#new-feature',
+          name: 'New Feaure',
+          childs: [
+            {
+              href: '#shift-title',
+              name: 'Shift & Title option'
+            },
+            { href: '#convert-table', name: 'Convert tabale to excel' }
+          ]
+        },
+        {
           href: '#complex-options',
           name: 'Complex Options',
           childs: [
@@ -52,7 +63,7 @@ const listOfNavItems = [
 export const useSelectStore = defineStore({
   id: 'select',
   state: () => ({
-    navItems:[],
+    navItems: [],
     navIndex: -1,
     selected: 0
   }),

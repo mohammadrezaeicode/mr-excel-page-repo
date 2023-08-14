@@ -42,8 +42,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+// import { useRouter } from 'vue-router'
+// const router = useRouter()
 import { useSelectStore } from '@/stores/select'
 // const props = defineProps(['name', 'items'])
 const select = useSelectStore()
@@ -78,10 +78,10 @@ const navItems = ref([
   // }
 ])
 // let selected = ref({ up: 0, down: 0 })
-function changeSelected(up, down, path) {
+function changeSelected(up) {
   // selected.value = { up, down }
   select.setNavBar(up)
-  router.push({ path })
+  // router.push({ path })
 }
 let openSection = ref({
   0: true

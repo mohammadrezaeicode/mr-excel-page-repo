@@ -70,7 +70,28 @@ const root = ref(null)
 let items = []
 const select = useSelectStore()
 select.setNavBar(0)
-onMounted(() => {
+let codes = reactive({
+    vitCdn: codeJson.cdnVite,
+    cdnWebpack: codeJson.cdnWebpack,
+    npm: 'npm install mr-excel',
+    yarn: 'yarn add mr-excel',
+    pnpm: 'pnpm install mr-excel',
+    ex1:'',
+    ex:'',
+  })
+onMounted(async () => {
+  codes.ex =await generateExample(ex)
+  codes.ex1 =await generateExample(ex1)
+  
+  // reactive({
+  //   vitCdn: codeJson.cdnVite,
+  //   cdnWebpack: codeJson.cdnWebpack,
+  //   npm: 'npm install mr-excel',
+  //   yarn: 'yarn add mr-excel',
+  //   pnpm: 'pnpm install mr-excel',
+  //   ex1: await generateExample(ex1),
+  //   ex: 
+  // })
   const idList = ['installation', 'using-a-package-manager', 'getting-started']
   idList.forEach((v) => {
     // //console.log(root.value.)
@@ -99,14 +120,5 @@ window.addEventListener('scroll', function () {
   }
   //console.log(selIndex, selTop, 'ooo', countNotchoosen)
   select.setSelect(selIndex)
-})
-let codes = reactive({
-  vitCdn: codeJson.cdnVite,
-  cdnWebpack: codeJson.cdnWebpack,
-  npm: 'npm install mr-excel',
-  yarn: 'yarn add mr-excel',
-  pnpm: 'pnpm install mr-excel',
-  ex1: generateExample(ex1.data, ex1.colorPalette, ex1.url, ex1.str),
-  ex: generateExample(ex.data)
 })
 </script>

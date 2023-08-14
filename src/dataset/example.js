@@ -1,4 +1,215 @@
 import dataset from './datas.json'
+export const ex10 = (() => {
+  function generateData() {
+    const colorPalette = {
+      c4: 'FFC7C7',
+      c2: '8785A2'
+    }
+    const rowAlignment = {
+      alignment: {
+        horizontal: 'left',
+        vertical: 'center'
+      }
+    }
+    const rowStyle = {
+      fg: colorPalette.c2,
+      fontFamily: 'Times New Roman',
+      fontColor: '6A2C70',
+      ...rowAlignment
+    }
+    const headerStyle = {
+      fg: colorPalette.c4,
+      fontFamily: 'Times New Roman',
+      fontColor: '#FFFFFF'
+    }
+    return {
+      imageFullName: 'ex10.PNG',
+      colorPalette,
+      url: 'https://colorhunt.co/palette/ffc7c7ffe2e2f6f6f68785a2',
+      data: {
+        creator: 'mr',
+        styles: {
+          'c0<0.3': {
+            fg: 'DCD6F7',
+            fontColor: '424874s',
+            ...rowAlignment
+          },
+          male: {
+            fg: '95E1D3',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          female: {
+            fg: 'F38181',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          rowStyle: {
+            ...rowStyle
+          },
+          headerStyle: {
+            ...headerStyle
+          }
+        },
+        sheet: [
+          {
+            shiftTop: 5,
+            shiftLeft: 5,
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+              if (fromHeader) {
+                return 'headerStyle'
+              } else {
+                if (colIndex == 0 && data < 0.3) {
+                  return 'c0<0.3'
+                } else if (colIndex == 3) {
+                  if (data) {
+                    return 'male'
+                  } else {
+                    return 'female'
+                  }
+                } else {
+                  return 'rowStyle'
+                }
+              }
+            },
+            headers: [
+              { label: 'c1', text: '**' },
+              { label: 'c2', text: '++' },
+              { label: 'c3', text: 'Name' },
+              { label: 'c5', text: 'Gender' }
+            ],
+            data: [
+              { c1: 0.756, c2: 150, c3: 'John', c5: 1 },
+              { c1: 0.238, c2: 120, c3: 'Jane', c5: 0 },
+              { c1: 0.865, c2: 180, c3: 'Michael', c5: 1 },
+              { c1: 0.412, c2: 130, c3: 'Emily', c5: 0 },
+              { c1: 0.587, c2: 160, c3: 'William', c5: 1 }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  return {
+    str: generateData.toString(),
+    ...generateData()
+  }
+})()
+export const ex11 = (() => {
+  function generateData() {
+    const colorPalette = {
+      c4: 'FFC7C7',
+      c2: '8785A2'
+    }
+    const rowAlignment = {
+      alignment: {
+        horizontal: 'left',
+        vertical: 'center'
+      }
+    }
+    const rowStyle = {
+      fg: colorPalette.c2,
+      fontFamily: 'Times New Roman',
+      fontColor: '6A2C70',
+      ...rowAlignment
+    }
+    const headerStyle = {
+      fg: colorPalette.c4,
+      fontFamily: 'Times New Roman',
+      fontColor: '#FFFFFF'
+    }
+    return {
+      imageFullName: 'ex10.PNG',
+      colorPalette,
+      url: 'https://colorhunt.co/palette/ffc7c7ffe2e2f6f6f68785a2',
+      data: {
+        addDefaultTitleStyle: true,
+        creator: 'mr',
+        styles: {
+          'c0<0.3': {
+            fg: 'DCD6F7',
+            fontColor: '424874s',
+            ...rowAlignment
+          },
+          male: {
+            fg: '95E1D3',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          female: {
+            fg: 'F38181',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          rowStyle: {
+            ...rowStyle
+          },
+          headerStyle: {
+            ...headerStyle
+          }
+        },
+        sheet: [
+          {
+            shiftTop: 1,
+            shiftLeft: 1,
+            title: {
+              shiftTop: 1,
+              shiftLeft: -1,
+              consommeRow: 4,
+              consommeCol: 6,
+              // height: 100,
+              // styleId: '',
+              text: 'Title'
+            },
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+              if (fromHeader) {
+                return 'headerStyle'
+              } else {
+                if (colIndex == 0 && data < 0.3) {
+                  return 'c0<0.3'
+                } else if (colIndex == 3) {
+                  if (data) {
+                    return 'male'
+                  } else {
+                    return 'female'
+                  }
+                } else {
+                  return 'rowStyle'
+                }
+              }
+            },
+            headers: [
+              { label: 'c1', text: '**' },
+              { label: 'c2', text: '++' },
+              { label: 'c3', text: 'Name' },
+              { label: 'c5', text: 'Gender' }
+            ],
+            data: [
+              { c1: 0.756, c2: 150, c3: 'John', c5: 1 },
+              { c1: 0.238, c2: 120, c3: 'Jane', c5: 0 },
+              { c1: 0.865, c2: 180, c3: 'Michael', c5: 1 },
+              { c1: 0.412, c2: 130, c3: 'Emily', c5: 0 },
+              { c1: 0.587, c2: 160, c3: 'William', c5: 1 }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  return {
+    str: generateData.toString(),
+    ...generateData()
+  }
+})()
+export const ex12 = (() => {
+  return {
+    str: `ExcelTable.convertTableToExcel('#table',null,true)`,
+    mode: 'convert',
+    query: '#table',
+    keepStyle: true
+  }
+})()
+
 export const ex = {
   imageFullName: 'ex.PNG',
   data: {
@@ -325,7 +536,7 @@ export const ex2 = {
   }
 }
 export const ex3 = (() => {
-  const generateData = function () {
+  function generateData() {
     const colorPalette = {
       c1: '08D9D6',
       c2: '252A34',
@@ -442,11 +653,11 @@ export const ex3 = (() => {
   }
   return {
     ...generateData(),
-    str: generateData
+    str: generateData.toString()
   }
 })()
 export const ex4 = (() => {
-  const generateData = function () {
+  function generateData() {
     const colorPalette = {
       c1: '2B2E4A',
       c2: 'E84545',
@@ -589,11 +800,11 @@ export const ex4 = (() => {
   }
   return {
     ...generateData(),
-    srs: generateData.toString(),
+    srs: generateData.toString()
   }
 })()
 export const ex5 = (() => {
-  const generateData = function () {
+  function generateData() {
     const colorPalette = {
       c1: '2C3639',
       c2: '3F4E4F',
@@ -664,7 +875,7 @@ export const ex5 = (() => {
         sheet: [
           {
             styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader, existingStyle) {
-              console.log(existingStyle)
+              //  console.log(existingStyle)
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -748,7 +959,7 @@ export const ex5 = (() => {
   }
   return {
     str: generateData.toString(),
-    ...generateData(),
+    ...generateData()
   }
 })()
 export const ex6 = (() => {
@@ -841,7 +1052,7 @@ export const ex6 = (() => {
               }
             },
             styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader, existingStyle) {
-              console.log(existingStyle)
+              //console.log(existingStyle)
               if (fromHeader) {
                 return 'headerStyle'
               } else {

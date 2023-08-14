@@ -1,4 +1,4 @@
 {
-  "cdnVite": "<script src=\"https://unpkg.com/mr-excel@latest/dist2/excel-table.js\"></script>",
-  "cdnWebpack": "<script src=\"https://unpkg.com/mr-excel@latest/dist2/excel-table.js\"></script>"
+  "cdnVite": "<script src=\"https://unpkg.com/mr-excel@1.1.1/dist/excel-table.umd.js\"></script>",
+  "cdnWebpack": "<script src=\"https://unpkg.com/mr-excel@latest/dist/excel-table.js\"></script>"
 }

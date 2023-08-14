@@ -50,7 +50,7 @@
             <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
             <span v-bind="props" class="icons" @click="dialog = true">
               <img
-                :src="'/img/' + exampleObject.imageFullName"
+                :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
                 alt="output result"
                 height="22"
                 width="22"
@@ -58,7 +58,11 @@
               />
             </span>
           </template>
-          <img :src="'/img/' + exampleObject.imageFullName" alt="output result" width="150" />
+          <img
+            :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
+            alt="output result"
+            width="150"
+          />
         </v-menu>
         <v-dialog v-model="dialog" width="auto">
           <v-card>
@@ -69,7 +73,7 @@
               <h4>Display result</h4>
               <v-spacer></v-spacer>
             </v-toolbar>
-            <img :src="'/img/' + exampleObject.imageFullName" alt="output result" />
+            <img :src="'/mr-excel-page/img/' + exampleObject.imageFullName" alt="output result" />
           </v-card>
         </v-dialog>
 
@@ -85,7 +89,7 @@
     <img
       class="mx-auto"
       height="250"
-      :src="'/img/' + exampleObject.imageFullName"
+      :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
       v-if="exampleObject && exampleObject.imageFullName && !displayCode"
     />
   </div>
@@ -94,7 +98,7 @@
 <script setup>
 import ExcelTable from 'mr-excel'
 import { onMounted, ref } from 'vue'
-let props = defineProps(['stringCode', 'type', 'exampleObject','notShowHiddien'])
+let props = defineProps(['stringCode', 'type', 'exampleObject', 'notShowHiddien'])
 // //console.log(props.exampleObject,'set')
 // const rect = reactive(props)
 // //console.log(stringCodes)
@@ -114,14 +118,18 @@ function copyClipboard() {
   navigator.clipboard.writeText(props.stringCode)
 }
 function generateExcel() {
-  if (props.exampleObject.data && props.exampleObject.data.notSave) {
-    ExcelTable.generateExcel(props.exampleObject.data).then((res) => {
-      var url = window.URL.createObjectURL(res)
-      window.location.assign(url)
-      return res
-    })
+  if (props.exampleObject.mode == 'convert') {
+    ExcelTable.convertTableToExcel(props.exampleObject.query,null,props.exampleObject.keepStyle)
   } else {
-    ExcelTable.generateExcel(props.exampleObject.data)
+    if (props.exampleObject.data && props.exampleObject.data.notSave) {
+      ExcelTable.generateExcel(props.exampleObject.data).then((res) => {
+        var url = window.URL.createObjectURL(res)
+        window.location.assign(url)
+        return res
+      })
+    } else {
+      ExcelTable.generateExcel(props.exampleObject.data)
+    }
   }
 }
 onMounted(() => {

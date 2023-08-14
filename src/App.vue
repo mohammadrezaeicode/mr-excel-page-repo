@@ -1,18 +1,26 @@
 <script setup>
-import { ref } from 'vue'
-import {
-  // RouterLink,
-  RouterView
-} from 'vue-router'
-import NavItems from './components/nav/NavItems.vue'
-import SubNavItem from './components/nav/SubNavItem.vue'
+import { onMounted, ref } from 'vue'
+// import {
+// RouterLink,
+//   RouterView
+// } from 'vue-router'
+import NavItems from '@/components/nav/NavItems.vue'
+import SubNavItem from '@/components/nav/SubNavItem.vue'
 
-const drawer = ref(true)
+const drawer = ref(window.innerWidth >= 1280)
 import ExcelTable from 'mr-excel'
 window.global = ExcelTable
 window.self.ExcelTable = ExcelTable
 window.ExcelTable = ExcelTable
+import { useSelectStore } from '@/stores/select'
+import HomeView from '@/views/HomeView.vue'
+import ExampleView from '@/views/ExampleView.vue'
+import ApiView from './views/ApiView.vue'
 
+const select = useSelectStore()
+onMounted(() => {
+  select.setNavBar(0)
+})
 // import HelloWorld from './components/HelloWorld.vue'
 </script>
 
@@ -113,7 +121,13 @@ window.ExcelTable = ExcelTable
       <div class="w-100">
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </div>
-      <v-main><RouterView /></v-main>
+      <v-main>
+        <!-- <RouterView /> -->
+        <HomeView v-if="select.navIndex == 0"></HomeView>
+        <ExampleView v-else-if="select.navIndex == 1"></ExampleView>
+        <ApiView v-else-if="select.navIndex == 2"></ApiView>
+        <p v-else>loading...</p>
+      </v-main>
     </div>
 
     <v-navigation-drawer location="right">

@@ -83,6 +83,65 @@
       will discuss how to change the key in the next section.
     </p>
     <CodeSection :stringCode="codes.ex7" :type="'javascript'" :exampleObject="ex7"> </CodeSection>
+    <h2 id="new-feature">New Features</h2>
+    <p>
+      In this section, we have introduced several new features that have been added from version
+      1.0.0 to 2.1.0.
+    </p>
+    <h3 id="shift-title">Shift & Title Option</h3>
+    <p>
+      The shift feature allows you to adjust the starting point of generating an Excel file. The
+      title option, on the other hand, is used when you want to include a title at the top of the
+      generated file.
+    </p>
+    <CodeSection :stringCode="codes.ex10" :type="'javascript'" :exampleObject="ex10"> </CodeSection>
+    <CodeSection :stringCode="codes.ex11" :type="'javascript'" :exampleObject="ex11"> </CodeSection>
+    <h3 id="convert-table">Convert Table to Excel Feature</h3>
+    <p>
+      Starting from version <b>2.1.0</b>, we have introduced the ability to directly generate Excel
+      files from HTML tables. By providing a table query or node, the library will create an Excel
+      representation. This functionality supports styles like merged cells, foreground colors, and
+      borders. To apply these styles(<b>cell Style</b>), you can pass <b>true</b> as the third input to the function.
+    </p>
+    <h3>Table code from <a href="https://www.w3schools.com/html/html_tables.asp">W3Schools</a></h3>
+    <table id="table">
+      <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+      </tr>
+      <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+      </tr>
+      <tr>
+        <td>Ernst Handel</td>
+        <td>Roland Mendel</td>
+        <td>Austria</td>
+      </tr>
+      <tr>
+        <td>Island Trading</td>
+        <td>Helen Bennett</td>
+        <td>UK</td>
+      </tr>
+      <tr>
+        <td>Laughing Bacchus Winecellars</td>
+        <td>Yoshi Tannamuri</td>
+        <td>Canada</td>
+      </tr>
+      <tr>
+        <td>Magazzini Alimentari Riuniti</td>
+        <td>Giovanni Rovelli</td>
+        <td>Italy</td>
+      </tr>
+    </table>
+    <CodeSection :stringCode="codes.ex12" :type="'javascript'" :exampleObject="ex12"> </CodeSection>
     <h2 id="complex-options">Complex Options</h2>
     <p>
       In the examples below, we aim to define some fun scenarios that could be useful for more
@@ -106,14 +165,39 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
 import CodeSection from '@/components/code/CodeSection.vue'
-import { ex2, ex3, ex4, ex5, ex6, ex7, ex8, ex9 } from '../dataset/example'
+import { ex2, ex3, ex4, ex5, ex6, ex7, ex8, ex9, ex10, ex11, ex12 } from '../dataset/example'
 import { generateExample } from '../utils/generate'
 import { useSelectStore } from '@/stores/select'
 const root = ref(null)
 let items = []
 const select = useSelectStore()
 select.setNavBar(1)
-onMounted(() => {
+let codes = reactive({
+  ex2: '',
+  ex3: '',
+  ex4: '',
+  ex5: '',
+  ex6: '',
+  ex7: '',
+  ex8: '',
+  ex9: '',
+  ex10: '',
+  ex11: '',
+  ex12: ''
+})
+onMounted(async () => {
+  codes.ex2 = await generateExample(ex2)
+  codes.ex3 = await generateExample(ex3)
+  codes.ex4 = await generateExample(ex4)
+  codes.ex5 = await generateExample(ex5)
+  codes.ex6 = await generateExample(ex6)
+  codes.ex7 = await generateExample(ex7)
+  codes.ex8 = await generateExample(ex8)
+  codes.ex9 = await generateExample(ex9)
+  codes.ex10 = await generateExample(ex10)
+  codes.ex11 = await generateExample(ex11)
+  codes.ex12 = await generateExample(ex12)
+
   const idList = [
     'general-option',
     'header-option',
@@ -121,6 +205,9 @@ onMounted(() => {
     'styles-format-options',
     'merging-cells-options',
     'group-rows-options',
+    'new-feature',
+    'shift-title',
+    'convert-table',
     'complex-options',
     'adjusting-key-properties-and-row-height',
     'conditional-styling'
@@ -158,20 +245,26 @@ window.addEventListener('scroll', function () {
   //console.log(selIndex, selTop, 'ooo', countNotchoosen)
   select.setSelect(selIndex)
 })
-let codes = reactive({
-  ex2: generateExample(ex2.data, ex2.colorPalette, ex2.url),
-  ex3: generateExample(ex3.data),
-  ex4: generateExample(ex4.data, ex4.colorPalette, ex4.url),
-  ex5: generateExample(ex5.data, ex5.colorPalette, ex5.url),
-  ex6: generateExample(ex6.data, ex6.colorPalette, ex6.url),
-  ex7: generateExample(ex7.data, ex7.colorPalette, ex7.url),
-  ex8: generateExample(ex8.data, ex8.colorPalette, ex8.url),
-  ex9: generateExample(ex9.data, ex9.colorPalette, ex9.url)
-})
 </script>
-<style>
+<style scoped>
 .dangger {
   color: rgb(194, 78, 78);
   font-size: 0.85rem;
+}
+#table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table td,
+th {
+  border: 1px solid rgb(250, 250, 250);
+  text-align: left;
+  padding: 8px;
+}
+
+#table tr:nth-child(even) td {
+  background-color: rgb(194, 78, 78);
 }
 </style>
