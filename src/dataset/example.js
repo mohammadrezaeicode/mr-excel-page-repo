@@ -119,7 +119,7 @@ export const ex11 = (() => {
       fontColor: '#FFFFFF'
     }
     return {
-      imageFullName: 'ex10.PNG',
+      imageFullName: 'ex11.PNG',
       colorPalette,
       url: 'https://colorhunt.co/palette/ffc7c7ffe2e2f6f6f68785a2',
       data: {
@@ -203,6 +203,7 @@ export const ex11 = (() => {
 })()
 export const ex12 = (() => {
   return {
+    imageFullName: 'ex12.PNG',
     str: `ExcelTable.convertTableToExcel('#table',null,true)`,
     mode: 'convert',
     query: '#table',
