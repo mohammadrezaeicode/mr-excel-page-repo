@@ -29,7 +29,9 @@ const listOfNavItems = [
               href: '#shift-title',
               name: 'Shift & Title option'
             },
-            { href: '#convert-table', name: 'Convert tabale to excel' }
+            { href: '#convert-table', name: 'Convert tabale to excel' },
+            { href: '#comment', name: 'Comment Option' },
+            { href: '#mstyle', name: 'Multi Style value Option' }
           ]
         },
         {

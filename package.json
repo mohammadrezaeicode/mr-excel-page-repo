@@ -13,7 +13,7 @@
   "dependencies": {
     "@mdi/font": "^7.2.96",
     "animate.css": "^4.1.1",
-    "mr-excel": "^2.1.1",
+    "mr-excel": "^2.4.0",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",

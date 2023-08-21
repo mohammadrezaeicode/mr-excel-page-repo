@@ -201,6 +201,312 @@ export const ex11 = (() => {
     ...generateData()
   }
 })()
+
+export const ex13 = (() => {
+  function generateData() {
+    const colorPalette = {
+      c4: '61677A',
+      c2: 'FFF6E0'
+    }
+    const rowAlignment = {
+      alignment: {
+        horizontal: 'left',
+        vertical: 'center'
+      }
+    }
+    const rowStyle = {
+      fg: colorPalette.c2,
+      fontFamily: 'Times New Roman',
+      fontColor: '6A2C70',
+      ...rowAlignment
+    }
+    const headerStyle = {
+      fg: colorPalette.c4,
+      fontFamily: 'Times New Roman',
+      fontColor: '#FFFFFF'
+    }
+    return {
+      imageFullName: 'ex14.PNG',
+      colorPalette,
+      url: 'https://colorhunt.co/',
+      data: {
+        addDefaultTitleStyle: true,
+        creator: 'mr',
+        styles: {
+          'c0<0.3': {
+            fg: 'DCD6F7',
+            fontColor: '424874s',
+            ...rowAlignment
+          },
+          male: {
+            fg: '95E1D3',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          female: {
+            fg: 'F38181',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          rowStyle: {
+            ...rowStyle
+          },
+          headerStyle: {
+            ...headerStyle
+          }
+        },
+        sheet: [
+          {
+            shiftTop: 1,
+            shiftLeft: 1,
+            title: {
+              comment: 'This is comment on table',
+              shiftTop: 1,
+              shiftLeft: -1,
+              consommeRow: 4,
+              consommeCol: 6,
+              // height: 100,
+              // styleId: '',
+              text: 'Title'
+            },
+            commentCodition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
+              console.log('called')
+              if (fromHeader) {
+                let textDataC0 = data.text.charAt(0)
+                if (textDataC0.toUpperCase() != textDataC0) {
+                  return {
+                    comment: `
+Header should start with ${textDataC0.toUpperCase()}`,
+                    author: 'System'
+                  }
+                }
+              }
+              return false
+            },
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+              if (fromHeader) {
+                return 'headerStyle'
+              } else {
+                if (colIndex == 0 && data < 0.3) {
+                  return 'c0<0.3'
+                } else if (colIndex == 3) {
+                  if (data) {
+                    return 'male'
+                  } else {
+                    return 'female'
+                  }
+                } else {
+                  return 'rowStyle'
+                }
+              }
+            },
+            headers: [
+              {
+                label: 'c1',
+                text: '**',
+                comment: {
+                  author: 'mr',
+                  comment: 'misspell in header'
+                }
+              },
+              { label: 'c2', text: '++' },
+              { label: 'c3', text: 'Name' },
+              { label: 'c5', text: 'gender' }
+            ],
+            data: [
+              { c1: 0.756, c2: 150, c3: 'John', c5: 1 },
+              {
+                c1: 0.238,
+                c2: 120,
+                c3: 'Jane',
+                c5: 0,
+                comment: {
+                  c3: 'Comment on Jane'
+                }
+              },
+              { c1: 0.865, c2: 180, c3: 'Michael', c5: 1 },
+              { c1: 0.412, c2: 130, c3: 'Emily', c5: 0 },
+              { c1: 0.587, c2: 160, c3: 'William', c5: 1 }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  return {
+    str: generateData.toString(),
+    ...generateData()
+  }
+})()
+export const ex14 = (() => {
+  function generateData() {
+    const colorPalette = {
+      c4: 'F7E987',
+      c2: '5B9A8B'
+    }
+    const rowAlignment = {
+      alignment: {
+        horizontal: 'left',
+        vertical: 'center'
+      }
+    }
+    const rowStyle = {
+      fg: colorPalette.c2,
+      fontFamily: 'Times New Roman',
+      fontColor: '6A2C70',
+      ...rowAlignment
+    }
+    const headerStyle = {
+      fg: colorPalette.c4,
+      fontFamily: 'Times New Roman',
+      fontColor: '#000000'
+    }
+    return {
+      imageFullName: 'ex15.PNG',
+      colorPalette,
+      url: 'https://colorhunt.co/palette/f8ede3dfd3c3d0b8a885586f',
+      data: {
+        addDefaultTitleStyle: true,
+        creator: 'mr',
+        styles: {
+          title: {
+            size: 48,
+            fg: 'E5BA73',
+            alignment: {
+              horizontal: 'left',
+              vertical: 'top'
+            }
+          },
+          t2: {
+            fontColor: 'FFFFFF'
+          },
+          t1: {
+            fontColor: '555555'
+          },
+          'c0<0.3': {
+            fg: 'DCD6F7',
+            fontColor: '424874s',
+            ...rowAlignment
+          },
+          male: {
+            fg: '95E1D3',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          female: {
+            fg: 'F38181',
+            fontColor: '252A34',
+            ...rowAlignment
+          },
+          rowStyle: {
+            ...rowStyle
+          },
+          headerStyle: {
+            ...headerStyle
+          }
+        },
+        sheet: [
+          {
+            shiftTop: 1,
+            shiftLeft: 1,
+            title: {
+              comment: 'This is comment on table',
+              shiftTop: 1,
+              shiftLeft: -1,
+              consommeRow: 4,
+              consommeCol: 6,
+              multiStyleValue: {
+                reg: [
+                  {
+                    reg: /t/gi,
+                    styleId: 't2'
+                  }
+                ]
+              },
+              // height: 100,
+              styleId: 'title',
+              text: 'Title'
+            },
+            commentCodition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
+              console.log('called')
+              if (fromHeader) {
+                let textDataC0 = data.text.charAt(0)
+                if (textDataC0.toUpperCase() != textDataC0) {
+                  return {
+                    comment: `
+Header should start with ${textDataC0.toUpperCase()}`,
+                    author: 'System'
+                  }
+                }
+              }
+              return false
+            },
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+              if (fromHeader) {
+                return 'headerStyle'
+              } else {
+                if (colIndex == 0 && data < 0.3) {
+                  return 'c0<0.3'
+                } else if (colIndex == 3) {
+                  if (data) {
+                    return 'male'
+                  } else {
+                    return 'female'
+                  }
+                } else {
+                  return 'rowStyle'
+                }
+              }
+            },
+            headers: [
+              {
+                label: 'c1',
+                text: '**',
+                comment: {
+                  author: 'mr',
+                  comment: 'misspell in header'
+                }
+              },
+              {
+                label: 'c2',
+                text: '++'
+              },
+              {
+                label: 'c3',
+                text: 'Name',
+                multiStyleValue: {
+                 "N":'t1',
+                 a:'t2'
+                }
+              },
+              { label: 'c5', text: 'gender' }
+            ],
+            data: [
+              { c1: 0.756, c2: 150, c3: 'John', c5: 1 },
+              {
+                c1: 0.238,
+                c2: 120,
+                c3: 'Jane',
+                c5: 0,
+                comment: {
+                  c3: 'Comment on Jane'
+                }
+              },
+              { c1: 0.865, c2: 180, c3: 'Michael', c5: 1 },
+              { c1: 0.412, c2: 130, c3: 'Emily', c5: 0 },
+              { c1: 0.587, c2: 160, c3: 'William', c5: 1 }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  return {
+    str: generateData.toString(),
+    ...generateData()
+  }
+})()
+
 export const ex12 = (() => {
   return {
     imageFullName: 'ex12.PNG',

@@ -51,7 +51,7 @@
                   variant="text"
                   @click.prevent="
                     select.setSelect(index1 + navitem.childs.length);
-                    goTo(item.href)
+                    goTo(item1.href)
                   "
                 >
                   {{ item1.name }}

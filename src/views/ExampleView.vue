@@ -101,7 +101,8 @@
       Starting from version <b>2.1.0</b>, we have introduced the ability to directly generate Excel
       files from HTML tables. By providing a table query or node, the library will create an Excel
       representation. This functionality supports styles like merged cells, foreground colors, and
-      borders. To apply these styles(<b>cell Style</b>), you can pass <b>true</b> as the third input to the function.
+      borders. To apply these styles(<b>cell Style</b>), you can pass <b>true</b> as the third input
+      to the function.
     </p>
     <h3>Table code from <a href="https://www.w3schools.com/html/html_tables.asp">W3Schools</a></h3>
     <table id="table">
@@ -142,6 +143,13 @@
       </tr>
     </table>
     <CodeSection :stringCode="codes.ex12" :type="'javascript'" :exampleObject="ex12"> </CodeSection>
+    <h3 id="comment">Comment Option</h3>
+    <p>After version 2.4.0 you can add comment on cells.</p>
+    <CodeSection :stringCode="codes.ex13" :type="'javascript'" :exampleObject="ex13"> </CodeSection>
+    
+    <h3 id="mstyle">Multi Style value Option</h3>
+    <p>After version 2.4.0, We added Ability to change the style of each character of cells. (only text value)</p>
+    <CodeSection :stringCode="codes.ex14" :type="'javascript'" :exampleObject="ex14"> </CodeSection>
     <h2 id="complex-options">Complex Options</h2>
     <p>
       In the examples below, we aim to define some fun scenarios that could be useful for more
@@ -165,7 +173,21 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
 import CodeSection from '@/components/code/CodeSection.vue'
-import { ex2, ex3, ex4, ex5, ex6, ex7, ex8, ex9, ex10, ex11, ex12 } from '../dataset/example'
+import {
+  ex2,
+  ex3,
+  ex4,
+  ex5,
+  ex6,
+  ex7,
+  ex8,
+  ex9,
+  ex10,
+  ex11,
+  ex12,
+  ex13,
+  ex14
+} from '../dataset/example'
 import { generateExample } from '../utils/generate'
 import { useSelectStore } from '@/stores/select'
 const root = ref(null)
@@ -183,7 +205,9 @@ let codes = reactive({
   ex9: '',
   ex10: '',
   ex11: '',
-  ex12: ''
+  ex12: '',
+  ex13: '',
+  ex14: ''
 })
 onMounted(async () => {
   codes.ex2 = await generateExample(ex2)
@@ -197,6 +221,8 @@ onMounted(async () => {
   codes.ex10 = await generateExample(ex10)
   codes.ex11 = await generateExample(ex11)
   codes.ex12 = await generateExample(ex12)
+  codes.ex13 = await generateExample(ex13)
+  codes.ex14 = await generateExample(ex14)
 
   const idList = [
     'general-option',
@@ -208,6 +234,8 @@ onMounted(async () => {
     'new-feature',
     'shift-title',
     'convert-table',
+    'comment',
+    'mstyle',
     'complex-options',
     'adjusting-key-properties-and-row-height',
     'conditional-styling'
