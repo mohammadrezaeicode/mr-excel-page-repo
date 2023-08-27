@@ -338,6 +338,177 @@ Header should start with ${textDataC0.toUpperCase()}`,
     ...generateData()
   }
 })()
+export const ex15 = (() => {
+  function generateData() {
+    const t = { c4: '00ADB5', c2: '393E46' },
+      n = { alignment: { horizontal: 'left', vertical: 'center' } },
+      a = { fg: t.c2, fontFamily: 'Times New Roman', fontColor: '6A2C70', ...n },
+      l = { fg: t.c4, fontFamily: 'Times New Roman', fontColor: '#000000' }
+    return {
+      imageFullName: 'ex16.PNG',
+      colorPalette: t,
+      url: 'https://colorhunt.co/palette/f9ed69f08a5db83b5e6a2c70',
+      data: {
+        addDefaultTitleStyle: !0,
+        creator: 'mr',
+        styles: {
+          col2: {
+            fontColor: '#F9ED69'
+          },
+          col1: {
+            fontColor: '#FF2E63'
+          },
+          title: {
+            size: 48,
+            fg: 'F9ED69',
+            fontColor: '6A2C70',
+            alignment: { horizontal: 'center', vertical: 'center' }
+          },
+          t2: { fontColor: 'F08A5D' },
+          t1: { fontColor: '555555' },
+          'c0<0.3': { fg: 'DCD6F7', fontColor: '424874s', ...n },
+          male: { fg: '95E1D3', fontColor: '252A34', ...n },
+          female: { fg: 'F38181', fontColor: '252A34', ...n },
+          rowStyle: { ...a },
+          headerStyle: { ...l }
+        },
+        sheet: [
+          {
+            useSplitBaseOnMatch: true,
+            shiftTop: 1,
+            shiftLeft: 1,
+            title: {
+              comment: 'This is comment on table',
+              shiftTop: 1,
+              shiftLeft: -1,
+              consommeRow: 4,
+              consommeCol: 6,
+              multiStyleValue: {
+                '+': 't1',
+                '.': 't1',
+                '|': 't1',
+                '\\': 't1',
+                reg: [{ reg: /t/gi, styleId: 't2' }]
+              },
+              styleId: 'title',
+              text: 'Title 1'
+            },
+            multiStyleConditin: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
+              if (fromHeader) {
+                let charList = data.text.match(/./g)
+                let result = charList.reduce(
+                  (res, curr, index) => {
+                    try {
+                      new RegExp(curr)
+                    } catch (error) {
+                      curr = '\\' + curr
+                    }
+                    if (index % 2 == 0) {
+                      res.result.reg.push({
+                        reg: new RegExp('[' + curr + ']'),
+                        styleId: 'col1'
+                      })
+                      return res
+                    } else {
+                      res.result.reg.push({
+                        reg: new RegExp('[' + curr + ']'),
+                        styleId: 'col2'
+                      })
+                      return res
+                    }
+                  },
+                  { curr: '', result: { reg: [] } }
+                )
+                return result.result
+              } else {
+                let charList = data.match(/./g)
+                let result = charList.reduce(
+                  (res, curr, index) => {
+                    try {
+                      new RegExp(curr)
+                    } catch (error) {
+                      curr = '\\' + curr
+                    }
+                    if (index % 2 == 0) {
+                      res.result.reg.push({
+                        reg: new RegExp('[' + curr + ']'),
+                        styleId: 'col1'
+                      })
+                      return res
+                    } else {
+                      res.result.reg.push({
+                        reg: new RegExp('[' + curr + ']'),
+                        styleId: 'col2'
+                      })
+                      return res
+                    }
+                  },
+                  { curr: '', result: { reg: [] } }
+                )
+
+                return result.result
+              }
+            },
+            commentCodition: function (o, r, i, s, u, c) {
+              if ((console.log('called'), c)) {
+                let d = o.text.charAt(0)
+                if (d.toUpperCase() != d)
+                  return {
+                    comment: `
+Header should start with ${d.toUpperCase()}`,
+                    author: 'System'
+                  }
+              }
+              return !1
+            },
+            styleCellCondition(o, r, i, s, u) {
+              return u
+                ? 'headerStyle'
+                : i == 0 && o < 0.3
+                ? 'c0<0.3'
+                : i == 3
+                ? o
+                  ? 'male'
+                  : 'female'
+                : 'rowStyle'
+            },
+            headers: [
+              {
+                label: 'c1',
+                text: '**',
+                comment: { author: 'mr', comment: 'misspell in header' }
+              },
+              { label: 'c2', text: '++' },
+              {
+                label: 'c3',
+                text: 'Name',
+                multiStyleValue: { N: 't1', a: 't2' }
+              },
+              { label: 'c5', text: 'gender' }
+            ],
+            data: [
+              { c1: '0.756', c2: '150', c3: 'John', c5: '1' },
+              {
+                c1: '0.238',
+                c2: '120',
+                c3: 'Jane',
+                c5: '0',
+                comment: { c3: 'Comment on Jane' }
+              },
+              { c1: '0.865', c2: '180', c3: 'Michael', c5: '1' },
+              { c1: '0.412', c2: '130', c3: 'Emily', c5: '0' },
+              { c1: '0.587', c2: '160', c3: 'William', c5: '1' }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  return {
+    str: generateData.toString(),
+    ...generateData()
+  }
+})()
 export const ex14 = (() => {
   function generateData() {
     const colorPalette = {
@@ -373,11 +544,12 @@ export const ex14 = (() => {
             size: 48,
             fg: 'E5BA73',
             alignment: {
-              horizontal: 'left',
-              vertical: 'top'
+              horizontal: 'center',
+              vertical: 'center'
             }
           },
           t2: {
+            size: 40,
             fontColor: 'FFFFFF'
           },
           t1: {
@@ -475,8 +647,8 @@ Header should start with ${textDataC0.toUpperCase()}`,
                 label: 'c3',
                 text: 'Name',
                 multiStyleValue: {
-                 "N":'t1',
-                 a:'t2'
+                  N: 't1',
+                  a: 't2'
                 }
               },
               { label: 'c5', text: 'gender' }
@@ -506,7 +678,6 @@ Header should start with ${textDataC0.toUpperCase()}`,
     ...generateData()
   }
 })()
-
 export const ex12 = (() => {
   return {
     imageFullName: 'ex12.PNG',

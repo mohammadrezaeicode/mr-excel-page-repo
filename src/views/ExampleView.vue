@@ -150,6 +150,7 @@
     <h3 id="mstyle">Multi Style value Option</h3>
     <p>After version 2.4.0, We added Ability to change the style of each character of cells. (only text value)</p>
     <CodeSection :stringCode="codes.ex14" :type="'javascript'" :exampleObject="ex14"> </CodeSection>
+    <CodeSection :stringCode="codes.ex15" :type="'javascript'" :exampleObject="ex15"> </CodeSection>
     <h2 id="complex-options">Complex Options</h2>
     <p>
       In the examples below, we aim to define some fun scenarios that could be useful for more
@@ -186,7 +187,8 @@ import {
   ex11,
   ex12,
   ex13,
-  ex14
+  ex14,
+  ex15
 } from '../dataset/example'
 import { generateExample } from '../utils/generate'
 import { useSelectStore } from '@/stores/select'
@@ -207,7 +209,8 @@ let codes = reactive({
   ex11: '',
   ex12: '',
   ex13: '',
-  ex14: ''
+  ex14: '',
+  ex15:''
 })
 onMounted(async () => {
   codes.ex2 = await generateExample(ex2)
@@ -223,6 +226,7 @@ onMounted(async () => {
   codes.ex12 = await generateExample(ex12)
   codes.ex13 = await generateExample(ex13)
   codes.ex14 = await generateExample(ex14)
+  codes.ex15 = await generateExample(ex15)
 
   const idList = [
     'general-option',
