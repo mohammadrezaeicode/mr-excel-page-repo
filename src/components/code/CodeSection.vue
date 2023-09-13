@@ -9,7 +9,7 @@
         <div class="ml-auto"></div>
         <v-tooltip text="Show code" location="top" v-if="!notShowHiddien">
           <template v-slot:activator="{ props }">
-            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
+
             <span v-bind="props" class="icons" @click="changeCodeDisplay">
               <v-icon color="var(--c3)" icon="mdi-chevron-up" v-if="displayCode"></v-icon>
               <v-icon color="var(--c3)" icon="mdi-code-tags" v-else></v-icon>
@@ -18,51 +18,30 @@
         </v-tooltip>
         <v-tooltip text="Copy Source" location="top">
           <template v-slot:activator="{ props }">
-            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
+
             <span v-bind="props" class="icons" @click="copyClipboard">
               <v-icon large icon="mdi-content-copy" v-if="!inCopyMode"></v-icon>
               <v-icon large icon="mdi-check" v-else></v-icon>
             </span>
           </template>
         </v-tooltip>
-        <!-- <v-tooltip text="show " location="top">
-        <template v-slot:activator="{ props }">
-          <span v-bind="props" class="icons" @click="copyClipboard">
-            <v-icon large icon="mdi-code-tags"></v-icon>
-          </span>
-        </template>
-      </v-tooltip> -->
         <v-tooltip text="Download result" location="top" v-if="exampleObject">
           <template v-slot:activator="{ props }">
-            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
+
             <span v-bind="props" class="icons" @click="generateExcel">
               <v-icon large icon="mdi-download"></v-icon>
             </span>
           </template>
         </v-tooltip>
-        <v-menu
-          :open-on-hover="true"
-          :close-delay="100"
-          :offset="[0, 75, 0, 0]"
-          v-if="exampleObject && exampleObject.imageFullName"
-        >
+        <v-menu :open-on-hover="true" :close-delay="100" :offset="[0, 75, 0, 0]"
+          v-if="exampleObject && exampleObject.imageFullName">
           <template v-slot:activator="{ props }">
-            <!-- <v-btn v-bind="props" icon="mdi-content-copy" variant="text"></v-btn> -->
             <span v-bind="props" class="icons" @click="dialog = true">
-              <img
-                :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
-                alt="output result"
-                height="22"
-                width="22"
-                style="margin-bottom: -6px"
-              />
+              <img :src="'/mr-excel-page/img/' + exampleObject.imageFullName" alt="output result" height="22" width="22"
+                style="margin-bottom: -6px" />
             </span>
           </template>
-          <img
-            :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
-            alt="output result"
-            width="150"
-          />
+          <img :src="'/mr-excel-page/img/' + exampleObject.imageFullName" alt="output result" width="150" />
         </v-menu>
         <v-dialog v-model="dialog" width="auto">
           <v-card>
@@ -76,41 +55,30 @@
             <img :src="'/mr-excel-page/img/' + exampleObject.imageFullName" alt="output result" />
           </v-card>
         </v-dialog>
-
-        <!-- <v-icon color="var(--c3)" icon="mdi-image-area"></v-icon>
-       -->
       </div>
-      <div class="code-content px-7 py-5" v-if="displayCode">
+      <div class="code-content px-7 py-5" v-if="displayCode || !(exampleObject && exampleObject.imageFullName)">
         <pre>
-<code>{{stringCode}}</code>
+<code>{{ stringCode }}</code>
 </pre>
       </div>
     </div>
-    <img
-      class="mx-auto"
-      height="250"
-      :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
-      v-if="exampleObject && exampleObject.imageFullName && !displayCode"
-    />
+    <img class="mx-auto" height="250" :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
+      v-if="exampleObject && exampleObject.imageFullName && !displayCode" />
   </div>
 </template>
 
 <script setup>
 import ExcelTable from 'mr-excel'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 let props = defineProps(['stringCode', 'type', 'exampleObject', 'notShowHiddien'])
-// //console.log(props.exampleObject,'set')
-// const rect = reactive(props)
-// //console.log(stringCodes)
 const root = ref(null)
 const dialog = ref(false)
 const inCopyMode = ref(false)
-const displayCode = ref(true)
+const displayCode = ref(false)
 function changeCodeDisplay() {
   displayCode.value = !displayCode.value
 }
 function copyClipboard() {
-  //console.log(props.stringCode)
   inCopyMode.value = true
   setTimeout(() => {
     inCopyMode.value = false
@@ -119,7 +87,7 @@ function copyClipboard() {
 }
 function generateExcel() {
   if (props.exampleObject.mode == 'convert') {
-    ExcelTable.convertTableToExcel(props.exampleObject.query,null,props.exampleObject.keepStyle)
+    ExcelTable.convertTableToExcel(props.exampleObject.query, null, props.exampleObject.keepStyle)
   } else {
     if (props.exampleObject.data && props.exampleObject.data.notSave) {
       ExcelTable.generateExcel(props.exampleObject.data).then((res) => {
@@ -132,11 +100,6 @@ function generateExcel() {
     }
   }
 }
-onMounted(() => {
-  //console.log(root.value.getBoundingClientRect().top)
-  //   //console.log('mounted', this.$refs.root)
-  //   this.$el
-})
 </script>
 
 <style scoped>
@@ -146,6 +109,7 @@ onMounted(() => {
   padding: 10px;
   /* border: 2px solid transparent; */
 }
+
 .icons:hover {
   /* pointer-events: none; */
   /* border: 2px solid var(--c3); */
@@ -158,33 +122,41 @@ onMounted(() => {
   /* transition: opacity 0.2s ease-in-out; */
   /* animation: opacitys 0.5s ease-in; */
 }
+
 @keyframes opacitys {
   0% {
     opacity: 1;
   }
+
   25% {
     opacity: 0.5;
   }
+
   50% {
     opacity: 0;
     color: var(--c3);
   }
+
   75% {
     opacity: 0.5;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 .type-header {
   position: absolute;
   top: 12px;
 }
+
 .code-header {
   position: sticky;
   /* top: 100px; */
   top: 0;
 }
+
 .code-display {
   position: relative;
   background-color: var(--c2);
@@ -195,6 +167,7 @@ onMounted(() => {
   /* width: 80%;
   max-width: 800px; */
 }
+
 .code-content {
   border-top: 1px solid var(--c5);
   /* padding: 20px; */

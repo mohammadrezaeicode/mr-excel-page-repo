@@ -10,6 +10,31 @@
       Our library offers comprehensive support for a wide range of features, including data
       formatting, formulas, styles, merged cells, and grouped rows.
     </p>
+    <p class="mt-2">We have four functions that are defined with specific use cases as follows:</p>
+    <ul class="ml-4">
+      <li class="mb-2">
+        <p><b>generateExcel</b>:This is the primary and most important function that serves as the entry point for all
+          other functions. Its responsibility is to generate an Excel file based on the received input data. We will
+          provide examples of the various options that can be utilized.</p>
+      </li>
+      <li class="mb-2">
+        <p><b>convertTableToExcel</b>:This function is designed exclusively for <b>client-side</b> use. It requires passing a
+          DOM element (a table element) as a parameter. The output of this function is an Excel file generated from the
+          provided table.</p>
+      </li>
+      <li class="mb-2">
+        <p><b>sideBySideLineByLine</b>:This function offers the capability to generate a single-sheet Excel file
+          containingmultiple tables side by side and line by line.</p>
+
+      </li>
+      <li class="mb-2">
+
+        <p><b>themeBaseGenerate</b>:Within this function, we utilize color palettes from <b><a
+              href="https://colorhunt.co/">colorhunt</a></b>.It accepts data and a theme index as inputs, then generates
+          an Excel file with the selected theme applied. <a
+            href="https://mohammadrezaeicode.github.io/mr-excel-them-page/">Themes</a></p>
+      </li>
+    </ul>
     <h2 id="installation">Installation via CDN</h2>
     <p>
       Harness the power of our bundled library with <b>Vite</b> by incorporating it into your
@@ -57,7 +82,6 @@
     <CodeSection :stringCode="codes.ex1" :type="'javascript'" :exampleObject="ex1"> </CodeSection>
   </v-container>
 </template>
-
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
 import codeJson from '../strings/code.json'
@@ -65,41 +89,28 @@ import CodeSection from '@/components/code/codeSection.vue'
 import { ex1, ex } from '../dataset/example'
 import { generateExample } from '../utils/generate'
 import { useSelectStore } from '@/stores/select'
-
 const root = ref(null)
 let items = []
 const select = useSelectStore()
 select.setNavBar(0)
 let codes = reactive({
-    vitCdn: codeJson.cdnVite,
-    cdnWebpack: codeJson.cdnWebpack,
-    npm: 'npm install mr-excel',
-    yarn: 'yarn add mr-excel',
-    pnpm: 'pnpm install mr-excel',
-    ex1:'',
-    ex:'',
-  })
+  vitCdn: codeJson.cdnVite,
+  cdnWebpack: codeJson.cdnWebpack,
+  npm: 'npm install mr-excel',
+  yarn: 'yarn add mr-excel',
+  pnpm: 'pnpm install mr-excel',
+  ex1: '',
+  ex: '',
+})
+const idList = ['installation', 'using-a-package-manager', 'getting-started']
 onMounted(async () => {
-  codes.ex =await generateExample(ex)
-  codes.ex1 =await generateExample(ex1)
-  
-  // reactive({
-  //   vitCdn: codeJson.cdnVite,
-  //   cdnWebpack: codeJson.cdnWebpack,
-  //   npm: 'npm install mr-excel',
-  //   yarn: 'yarn add mr-excel',
-  //   pnpm: 'pnpm install mr-excel',
-  //   ex1: await generateExample(ex1),
-  //   ex: 
-  // })
-  const idList = ['installation', 'using-a-package-manager', 'getting-started']
+  codes.ex = await generateExample(ex)
+  codes.ex1 = await generateExample(ex1)
   idList.forEach((v) => {
-    // //console.log(root.value.)
     items.push(document.querySelector('#' + v))
-    //console.log(items)
   })
-  document.body.scrollTop = 0 // For Safari
-  document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
 })
 window.addEventListener('scroll', function () {
   let selIndex = -1
@@ -113,12 +124,10 @@ window.addEventListener('scroll', function () {
     } else {
       countNotchoosen++
     }
-    //console.log(top, index, 's', countNotchoosen)
   })
   if (countNotchoosen == items.length) {
     selIndex = items.length - 1
   }
-  //console.log(selIndex, selTop, 'ooo', countNotchoosen)
   select.setSelect(selIndex)
 })
 </script>

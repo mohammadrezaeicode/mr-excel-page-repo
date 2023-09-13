@@ -265,12 +265,9 @@ export const ex13 = (() => {
               shiftLeft: -1,
               consommeRow: 4,
               consommeCol: 6,
-              // height: 100,
-              // styleId: '',
               text: 'Title'
             },
             commentCodition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
-              console.log('called')
               if (fromHeader) {
                 let textDataC0 = data.text.charAt(0)
                 if (textDataC0.toUpperCase() != textDataC0) {
@@ -450,7 +447,7 @@ export const ex15 = (() => {
               }
             },
             commentCodition: function (o, r, i, s, u, c) {
-              if ((console.log('called'), c)) {
+              if (c) {
                 let d = o.text.charAt(0)
                 if (d.toUpperCase() != d)
                   return {
@@ -600,7 +597,6 @@ export const ex14 = (() => {
               text: 'Title'
             },
             commentCodition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
-              console.log('called')
               if (fromHeader) {
                 let textDataC0 = data.text.charAt(0)
                 if (textDataC0.toUpperCase() != textDataC0) {
@@ -667,6 +663,131 @@ Header should start with ${textDataC0.toUpperCase()}`,
               { c1: 0.865, c2: 180, c3: 'Michael', c5: 1 },
               { c1: 0.412, c2: 130, c3: 'Emily', c5: 0 },
               { c1: 0.587, c2: 160, c3: 'William', c5: 1 }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  return {
+    str: generateData.toString(),
+    ...generateData()
+  }
+})()
+
+export const ex16 = (() => {
+  function generateData() {
+    return {
+      imageFullName: 'ex17.PNG',
+      data: {
+        creator: 'mr',
+        sheet: [
+          {
+            images: [
+              {
+                url: '/mr-excel-page/img/ezgif.com-gif-maker.gif',
+                from: 'H1',
+                type: 'one'
+              },
+              {
+                url: '/mr-excel-page/img/uniqe.jpg',
+                from: 'H2',
+                type: 'one'
+              },
+
+              {
+                url: '/mr-excel-page/img/ex.PNG',
+                from: 'H3',
+                type: 'onde'
+              },
+              {
+                url: '/mr-excel-page/img/ex.PNG',
+                from: 'H4',
+                type: 'two'
+              },
+              {
+                url: '/mr-excel-page/img/ezgif.com-gif-maker.gif',
+                from: 'E1',
+                to: 'F10',
+                type: 'two'
+              },
+              {
+                url: '/mr-excel-page/img/uniqe.jpg',
+                from: 'H6',
+                type: 'two'
+              }
+            ],
+
+            headers: [
+              {
+                label: 'Name',
+                text: 'Name'
+              },
+              { label: 'Color', text: 'Color' },
+              { label: 'Size', text: 'Size' },
+              { label: 'Price', text: 'Price' }
+            ],
+            data: [
+              {
+                Name: 'Rose',
+                Color: 'Red',
+                Size: 'Medium',
+                Price: 5.99
+              },
+              {
+                Name: 'Tulip',
+                Color: 'Yellow',
+                Size: 'Small',
+                Price: 2.49
+              },
+              {
+                Name: 'Daisy',
+                Color: 'White',
+                Size: 'Small',
+                Price: 1.99
+              },
+              {
+                Name: 'Sunflower',
+                Color: 'Yellow',
+                Size: 'Large',
+                Price: 4.99
+              },
+              {
+                Name: 'Lily',
+                Color: 'Pink',
+                Size: 'Medium',
+                Price: 3.99
+              },
+              {
+                Name: 'Daffodil',
+                Color: 'Yellow',
+                Size: 'Small',
+                Price: 2.49
+              },
+              {
+                Name: 'Orchid',
+                Color: 'Purple',
+                Size: 'Medium',
+                Price: 6.99
+              },
+              {
+                Name: 'Carnation',
+                Color: 'Red',
+                Size: 'Small',
+                Price: 1.99
+              },
+              {
+                Name: 'Hyacinth',
+                Color: 'Blue',
+                Size: 'Medium',
+                Price: 4.49
+              },
+              {
+                Name: 'Pansy',
+                Color: 'Purple',
+                Size: 'Small',
+                Price: 2.99
+              }
             ]
           }
         ]
@@ -1352,8 +1473,7 @@ export const ex5 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader, existingStyle) {
-              //  console.log(existingStyle)
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -1511,7 +1631,6 @@ export const ex6 = (() => {
         sheet: [
           {
             mergeRowDataCondition(data, key, index, fromHeader) {
-              //console.log(merge, fromHeader, data, key)
               if (fromHeader) {
                 return false
               } else {
@@ -1529,8 +1648,7 @@ export const ex6 = (() => {
                 }
               }
             },
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader, existingStyle) {
-              //console.log(existingStyle)
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -1671,8 +1789,7 @@ export const ex7 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader, existingStyle) {
-              //console.log(existingStyle)
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -1874,8 +1991,7 @@ export const ex8 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader, existingStyle) {
-              //console.log(existingStyle)
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -2103,8 +2219,7 @@ export const ex9 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader, existingStyle) {
-              //console.log(existingStyle)
+            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {

@@ -20,7 +20,6 @@
 
 <script setup>
 const prop = defineProps(['name', 'rows'])
-//console.log(prop)
 </script>
 
 <style scoped>

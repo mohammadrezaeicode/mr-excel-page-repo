@@ -37,8 +37,7 @@
        AlignmentOption;
     border?:BorderOption;
     format: string;
-}</pre
-        >
+}</pre>
       </div>
       <TableComponent :rows="dataRel.styles.rows"></TableComponent>
     </div>
@@ -49,7 +48,6 @@
       options.
     </p>
     <TableComponent :rows="dataRel.sheet.rows"></TableComponent>
-
     <p>
       These properties allow you to customize the behavior and appearance of individual sheets
       within the Excel file generated using the library. You can set headers, apply formulas, define
@@ -81,8 +79,7 @@
     start: string;
     end: string;
     styleId?: string;
-}</pre
-        >
+}</pre>
       </div>
       <TableComponent :rows="dataRel.formula.rows"></TableComponent>
     </div>
@@ -103,9 +100,309 @@
       Excel sheets. Adjusting these properties allows you to control the positioning, orientation,
       and overall style of the data in your cells.
     </p>
+    <h2 id="side-by-side">Side by Side / line by line Object</h2>
+    <p>This object is used as input for the<b>sideBySideLineByLine</b> Function
+    </p>
+    <TableComponent :rows="dataRel.side.rows"></TableComponent>
+    <h2 id="side-by-side">Data models</h2>
+    <p class="mb-2">Some of the data models that are being used include:</p>
+    <div class="pre mb-auto pa-2 mr-1 my-auto">
+      <pre>
+export type ProtectionOption = {
+  [key in ProtectionOptionKey]: "0" | "1" | 0 | 1;
+};
+export interface ImageTypes {
+  url: string;
+  from: string;
+  to?: string;
+  type?: "one" | "two";
+  extent?: {
+    cx: number;
+    cy: number;
+  };
+  margin?: {
+    all?: number;
+    right?: number;
+    left?: number;
+    bottom?: number;
+    top?: number;
+  };
+}
+export interface SideBySide {
+  sheetName?: string;
+  spaceX?: number;
+  spaceY?: number;
+  headers: { label: string; text: string }[];
+  data: Data[];
+  headerIndex?: number;
+}
+export type ProtectionOptionKey =
+  | "sheet"
+  | "formatCells"
+  | "formatColumns"
+  | "formatRows"
+  | "insertColumns"
+  | "insertRows"
+  | "insertHyperlinks"
+  | "deleteColumns"
+  | "deleteRows"
+  | "sort"
+  | "autoFilter"
+  | "pivotTables";
+
+export type AlignmentOptionKey =
+  | "horizontal"
+  | "vertical"
+  | "wrapText"
+  | "shrinkToFit"
+  | "readingOrder"
+  | "textRotation"
+  | "indent";
+export interface AlignmentOption {
+  horizontal?: "center" | "left" | "right";
+  vertical?: "center" | "top" | "bottom";
+  wrapText?: "0" | "1" | 2 | 1;
+  shrinkToFit?: "0" | "1" | 2 | 1;
+  readingOrder?: "1" | "2" | 2 | 1;
+  textRotation?: number;
+  indent?: number;
+  rtl?: boolean;
+  ltr?: boolean;
+}
+export type BorderDirection = "full" | "top" | "left" | "right" | "bottom";
+export type BorderOption = {
+  [key in BorderDirection]?: {
+    color: string;
+    style:
+      | "slantDashDot"
+      | "dotted"
+      | "thick"
+      | "hair"
+      | "dashDot"
+      | "dashDotDot"
+      | "dashed"
+      | "thin"
+      | "mediumDashDot"
+      | "medium"
+      | "double"
+      | "mediumDashed";
+  };
+};
+export interface Header {
+  label: string;
+  text: string;
+  size?: number;
+  multiStyleValue?: MultiStyleValue;
+  comment?: Comment | string;
+  formula?: {
+    type: FormulaType;
+    styleId?: string;
+  };
+}
+
+export interface Data extends DataOptions {
+  [key: string]: string | number | any | undefined;
+}
+export interface MultiStyleRexValue {
+  reg: RegExp | string;
+  styleId: string;
+}
+export interface Comment {
+  comment?: string;
+  styleId?: string;
+  author?: string;
+}
+export interface MultiStyleValue {
+  [key: string]: string | undefined | MultiStyleRexValue[];
+  reg?: MultiStyleRexValue[];
+}
+export interface MapMultiStyleValue {
+  [key: string]: MultiStyleValue;
+}
+export interface MapComment {
+  [key: string]: Comment | string;
+}
+export interface DataOptions {
+  [key: string]:
+    | "0"
+    | "1"
+    | number
+    | string
+    | undefined
+    | MapComment
+    | MapMultiStyleValue;
+  outlineLevel?: number;
+  hidden?: "0" | "1" | number;
+  rowStyle?: string;
+  height?: number;
+  multiStyleValue?: MapMultiStyleValue;
+  comment?: MapComment;
+}
+export interface MergeRowConditionMap {
+  [columnKey: string]: {
+    inProgress: boolean;
+    start: number;
+  };
+}
+export type MultiStyleConditinFunction = (
+  data: Header | string | number | undefined,
+  object: null | Data,
+  headerKey: string,
+  rowIndex: number,
+  colIndex: number,
+  fromHeader: boolean
+) => MultiStyleValue | null;
+
+export type CommentConditionFunction = (
+  data: Header | string | number | undefined,
+  object: null | Data,
+  headerKey: string,
+  rowIndex: number,
+  colIndex: number,
+  fromHeader: boolean
+) => Comment | string | false | undefined | null;
+export type StyleCellConditionFunction = (
+  data: Header | string | number | undefined,
+  object: Header | Data,
+  colIndex: number,
+  rowIndex: number,
+  fromHeader: boolean,
+  stylekeys: string[]
+) => string | null;
+export type MergeRowDataConditionFunction = (
+  data: Header | string | number | undefined,
+  key: string | null,
+  index: number,
+  fromHeader: boolean
+) => boolean;
+export interface SortAndFilter {
+  mode: "all" | "ref";
+  ref?: string;
+}
+export interface Title {
+  shiftTop?: number;
+  shiftLeft?: number;
+  consommeRow?: number;
+  consommeCol?: number;
+  height?: number;
+  styleId?: string;
+  text?: string;
+  multiStyleValue?: MultiStyleValue;
+  comment?: Comment | string;
+}
+export interface SheetOption {
+  withoutHeader?: boolean;
+  multiStyleConditin?: MultiStyleConditinFunction;
+  useSplitBaseOnMatch?: boolean;
+  images?: ImageTypes[];
+  formula?: Formula;
+  name?: string;
+  title?: Title;
+  shiftTop?: number;
+  shiftLeft?: number;
+  selected?: boolean;
+  tabColor?: string;
+  merges?: string[];
+  headerStyleKey?: string;
+  mergeRowDataCondition?: MergeRowDataConditionFunction;
+  styleCellCondition?: StyleCellConditionFunction;
+  commentCodition?: CommentConditionFunction;
+  sortAndfilter?: SortAndFilter;
+  state?: "hidden" | "visible";
+  headerRowOption?: any;
+  protectionOption?: ProtectionOption;
+  headerHeight?: number;
+}
+export interface Sheet extends SheetOption {
+  headers: Header[];
+  data: Data[];
+}
+export interface HeaderRowOption {
+  outlineLevel: "string";
+}
+export interface StyleMapper {
+  commentSintax: {
+    value: {
+      [key: string]: string;
+    };
+  };
+  format: {
+    count: number;
+    value: string;
+  };
+  border: {
+    count: number;
+    value: string;
+  };
+  fill: {
+    count: number;
+    value: string;
+  };
+  font: {
+    count: number;
+    value: string;
+  };
+  cell: {
+    count: number;
+    value: string;
+  };
+}
+export type FormulaType = "AVERAGE" | "SUM" | "COUNT" | "MAX" | "MIN";
+export interface StyleBody {
+  fg?: string;
+  fontColor?: string;
+  fontFamily?: string;
+  size?: number;
+  index?: number;
+  alignment?: AlignmentOption;
+  border?: BorderOption;
+  format?: string;
+  bold?: boolean;
+  underline?: boolean;
+  italic?: boolean;
+  doubleUnderline?: boolean;
+}
+export interface Styles {
+  [key: string]: StyleBody;
+}
+export interface FormatMap {
+  [format: string]: {
+    key: number;
+    value?: string;
+  };
+}
+export interface FormulaSetting {
+  type: FormulaType;
+  start: string;
+  end: string;
+  styleId?: string;
+}
+export interface Formula {
+  [insertCell: string]: FormulaSetting;
+}
+export interface Theme extends ExcelTableOption {
+  sheet: SheetOption[];
+}
+export interface ExcelTableOption {
+  notSave?: boolean;
+  creator?: string;
+  backend?: boolean;
+  fileName?: string;
+  generateType?: "nodebuffer" | "array" | "binarystring" | "base64";
+  addDefaultTitleStyle?: boolean;
+  created?: string;
+  modified?: string;
+  numberOfColumn?: number;
+  createType?: string;
+  mapSheetDataOption?: any;
+  styles?: Styles;
+}
+export interface ExcelTable extends ExcelTableOption{
+  sheet: Sheet[];
+}</pre>
+    </div>
   </v-container>
 </template>
-
 <script setup>
 import {
   onMounted,
@@ -119,7 +416,6 @@ import {
 // import { generateExample } from '../utils/generate'
 import { useSelectStore } from '@/stores/select'
 import TableComponent from '@/components/table/TableComponent.vue'
-
 const root = ref(null)
 const dataRel = reactive({
   table: {
@@ -327,26 +623,53 @@ const dataRel = reactive({
         des: 'Whether the cell content should be displayed left-to-right. Use "true" for left-to-right alignment.'
       }
     ]
+  },
+  side: {
+    rows: [
+      {
+        name: 'sheetName?',
+        type: 'string',
+        des: 'A string representing the name of the sheet. (Optional)'
+      },
+      {
+        name: 'spaceX?',
+        type: 'number',
+        des: 'A number indicating the space from the left. (Optional)'
+      },
+      {
+        name: 'spaceY?',
+        type: 'number',
+        des: 'A number indicating the space from the bottom. (Optional)'
+      },
+      {
+        name: 'headers',
+        type: '{label: string; text: string }[]',
+        des: 'An array of objects, each containing a `label` (string) and `text` (string), representing the headers of the table.'
+      },
+      {
+        name: 'data',
+        type: 'Data[]',
+        des: 'An array of `Data` objects, representing the rows of the table.'
+      },
+    ]
   }
 })
 let items = []
 const select = useSelectStore()
-//console.log('changes')
 select.setNavBar(2)
+const idList = [
+  'excel-table-object',
+  'styles-object',
+  'sheet-object',
+  'border-object',
+  'formula-object',
+  'alignment-options',
+  'side-by-side'
+]
 onMounted(() => {
-  const idList = [
-    'excel-table-object',
-    'styles-object',
-    'sheet-object',
-    'border-object',
-    'formula-object',
-    'alignment-options'
-  ]
   idList.forEach((v) => {
-    // //console.log(root.value.)
     select.setNavBar(2)
     items.push(document.querySelector('#' + v))
-    //console.log(items)
   })
   document.body.scrollTop = 0 // For Safari
   document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
@@ -363,12 +686,10 @@ window.addEventListener('scroll', function () {
     } else {
       countNotchoosen++
     }
-    //console.log(top, index, 's', countNotchoosen)
   })
   if (countNotchoosen == items.length) {
     selIndex = items.length - 1
   }
-  //console.log(selIndex, selTop, 'ooo', countNotchoosen)
   select.setSelect(selIndex)
 })
 </script>

@@ -19,8 +19,7 @@
       <b>sortAndfilter</b>. In the example below, we will demonstrate how to utilize these
       properties. Additionally, for Excel file information, we offer options such as <b>creator</b>,
       <b>created</b>, <b>notSave</b>, and <b>modified</b>. <br />
-      <span class="dangger"
-        >*Note: Please use the protectionOption only when necessary, as it may potentially lead to
+      <span class="dangger">*Note: Please use the protectionOption only when necessary, as it may potentially lead to
         broken generated files. We recommend avoiding the use of other sheet options as well.
         <br />
         *Important Note: Excel file information such as 'name', 'created', and 'modified' is
@@ -67,7 +66,6 @@
       predefined and cannot be customized.
     </p>
     <CodeSection :stringCode="codes.ex5" :type="'javascript'" :exampleObject="ex5"> </CodeSection>
-
     <h2 id="merging-cells-options">Merging Cells Options</h2>
     <p>
       We offer options for merging rows of cells together. Additionally, we provide a function-based
@@ -146,11 +144,13 @@
     <h3 id="comment">Comment Option</h3>
     <p>After version 2.4.0 you can add comment on cells.</p>
     <CodeSection :stringCode="codes.ex13" :type="'javascript'" :exampleObject="ex13"> </CodeSection>
-    
     <h3 id="mstyle">Multi Style value Option</h3>
     <p>After version 2.4.0, We added Ability to change the style of each character of cells. (only text value)</p>
     <CodeSection :stringCode="codes.ex14" :type="'javascript'" :exampleObject="ex14"> </CodeSection>
-    <CodeSection :stringCode="codes.ex15" :type="'javascript'" :exampleObject="ex15"> </CodeSection>
+    <CodeSection :stringCode="codes.ex15" :type="'javascript'" :exampleObject="ex15"> </CodeSection>    
+    <h3 id="images">Images Option</h3>
+    <p>After version 2.8.0, we introduced the ability to add images.</p>
+    <CodeSection :stringCode="codes.ex16" :type="'javascript'" :exampleObject="ex16"> </CodeSection>
     <h2 id="complex-options">Complex Options</h2>
     <p>
       In the examples below, we aim to define some fun scenarios that could be useful for more
@@ -170,7 +170,6 @@
     <CodeSection :stringCode="codes.ex9" :type="'javascript'" :exampleObject="ex9"> </CodeSection>
   </v-container>
 </template>
-
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
 import CodeSection from '@/components/code/CodeSection.vue'
@@ -188,7 +187,7 @@ import {
   ex12,
   ex13,
   ex14,
-  ex15
+  ex15,ex16
 } from '../dataset/example'
 import { generateExample } from '../utils/generate'
 import { useSelectStore } from '@/stores/select'
@@ -210,8 +209,26 @@ let codes = reactive({
   ex12: '',
   ex13: '',
   ex14: '',
-  ex15:''
+  ex15: '',
+  ex16:''
 })
+const idList = [
+  'general-option',
+  'header-option',
+  'formula-option',
+  'styles-format-options',
+  'merging-cells-options',
+  'group-rows-options',
+  'new-feature',
+  'shift-title',
+  'convert-table',
+  'comment',
+  'mstyle',
+  'images',
+  'complex-options',
+  'adjusting-key-properties-and-row-height',
+  'conditional-styling'
+]
 onMounted(async () => {
   codes.ex2 = await generateExample(ex2)
   codes.ex3 = await generateExample(ex3)
@@ -227,30 +244,12 @@ onMounted(async () => {
   codes.ex13 = await generateExample(ex13)
   codes.ex14 = await generateExample(ex14)
   codes.ex15 = await generateExample(ex15)
-
-  const idList = [
-    'general-option',
-    'header-option',
-    'formula-option',
-    'styles-format-options',
-    'merging-cells-options',
-    'group-rows-options',
-    'new-feature',
-    'shift-title',
-    'convert-table',
-    'comment',
-    'mstyle',
-    'complex-options',
-    'adjusting-key-properties-and-row-height',
-    'conditional-styling'
-  ]
+  codes.ex16 = await generateExample(ex16)
   idList.forEach((v) => {
-    // //console.log(root.value.)
     items.push(document.querySelector('#' + v))
-    //console.log(items)
   })
-  document.body.scrollTop = 0 // For Safari
-  document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
 })
 window.addEventListener('scroll', function () {
   let selIndex = -1
@@ -269,12 +268,10 @@ window.addEventListener('scroll', function () {
     } else {
       countNotchoosen++
     }
-    //console.log(top, index, 's', countNotchoosen)
   })
   if (countNotchoosen == items.length) {
     selIndex = items.length - 1
   }
-  //console.log(selIndex, selTop, 'ooo', countNotchoosen)
   select.setSelect(selIndex)
 })
 </script>
@@ -283,6 +280,7 @@ window.addEventListener('scroll', function () {
   color: rgb(194, 78, 78);
   font-size: 0.85rem;
 }
+
 #table {
   font-family: arial, sans-serif;
   border-collapse: collapse;

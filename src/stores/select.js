@@ -5,9 +5,9 @@ const listOfNavItems = [
     {
       name: 'Interduction',
       childs: [
-        { name: 'Installation', href: '#installation' },
-        { name: 'Using a Package Manager', href: '#using-a-package-manager' },
-        { name: 'Getting Started', href: '#getting-started' }
+        { name: 'Installation', mainId: 0, href: '#installation' },
+        { name: 'Using a Package Manager', mainId: 1, href: '#using-a-package-manager' },
+        { name: 'Getting Started', mainId: 2, href: '#getting-started' }
       ]
     }
   ],
@@ -15,34 +15,39 @@ const listOfNavItems = [
     {
       name: 'Examples',
       childs: [
-        { href: '#general-option', name: 'General Option' },
-        { href: '#header-option', name: 'Header Option' },
-        { href: '#formula-option', name: 'Formula Option' },
-        { href: '#styles-format-options', name: 'Styles & Format Options' },
-        { href: '#merging-cells-options', name: 'Merging Cells Options' },
-        { href: '#group-rows-options', name: 'Group Rows Options' },
+        { mainId: 0, href: '#general-option', name: 'General Option' },
+        { mainId: 1, href: '#header-option', name: 'Header Option' },
+        { mainId: 2, href: '#formula-option', name: 'Formula Option' },
+        { mainId: 3, href: '#styles-format-options', name: 'Styles & Format Options' },
+        { mainId: 4, href: '#merging-cells-options', name: 'Merging Cells Options' },
+        { mainId: 5, href: '#group-rows-options', name: 'Group Rows Options' },
         {
+          mainId: 6,
           href: '#new-feature',
           name: 'New Feaure',
           childs: [
             {
+              mainId: 7,
               href: '#shift-title',
               name: 'Shift & Title option'
             },
-            { href: '#convert-table', name: 'Convert tabale to excel' },
-            { href: '#comment', name: 'Comment Option' },
-            { href: '#mstyle', name: 'Multi Style value Option' }
+            { mainId: 8, href: '#convert-table', name: 'Convert tabale to excel' },
+            { mainId: 9, href: '#comment', name: 'Comment Option' },
+            { mainId: 10, href: '#mstyle', name: 'Multi Style value Option' },
+            { mainId: 11, href: '#images', name: 'Images Option' }
           ]
         },
         {
+          mainId: 12,
           href: '#complex-options',
           name: 'Complex Options',
           childs: [
             {
+              mainId: 13,
               href: '#adjusting-key-properties-and-row-height',
               name: 'Adjusting Key Properties and Row Height'
             },
-            { href: '#conditional-styling', name: 'Conditional Styling' }
+            { mainId: 14, href: '#conditional-styling', name: 'Conditional Styling' }
           ]
         }
       ]
@@ -52,12 +57,13 @@ const listOfNavItems = [
     {
       name: 'API',
       childs: [
-        { href: '#excel-table-object', name: 'ExcelTable Object' },
-        { href: '#styles-object', name: 'Styles Object' },
-        { href: '#sheet-object', name: 'Sheet Object' },
-        { href: '#border-object', name: 'Border Object' },
-        { href: '#formula-object', name: 'Formula Object' },
-        { href: '#alignment-options', name: 'Alignment Object' }
+        { mainId: 0, href: '#excel-table-object', name: 'ExcelTable Object' },
+        { mainId: 1, href: '#styles-object', name: 'Styles Object' },
+        { mainId: 2, href: '#sheet-object', name: 'Sheet Object' },
+        { mainId: 3, href: '#border-object', name: 'Border Object' },
+        { mainId: 4, href: '#formula-object', name: 'Formula Object' },
+        { mainId: 5, href: '#alignment-options', name: 'Alignment Object' },
+        { mainId: 6, href: '#side-by-side', name: 'Side by Side / Line by Line Object' }
       ]
     }
   ]
@@ -80,23 +86,8 @@ export const useSelectStore = defineStore({
       this.navIndex = num
       this.navItems = listOfNavItems[num]
     },
-
     setSelect(num) {
-      //console.log('changes')
       this.selected = num
     }
   }
 })
-
-// defineStore('selected', () => {
-//   const count = ref(0)
-//   // const doubleCount = computed(() => count.value * 2)
-//   // function increment() {
-//   //   count.value++
-//   // }
-//   function setSelected(num) {
-//     //console.log('first')
-//     count.value == num
-//   }
-//   return { count, setSelected }
-// })

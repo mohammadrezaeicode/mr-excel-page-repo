@@ -3,7 +3,6 @@ import prettierPluginBabel from 'https://unpkg.com/prettier@3.0.1/plugins/babel.
 import prettierPluginEstree from 'https://unpkg.com/prettier@3.0.1/plugins/estree.mjs'
 import prettierPluginHtml from 'https://unpkg.com/prettier@3.0.1/plugins/html.mjs'
 function detectFunctionName(str) {
-  console.log(typeof str)
   if (str.indexOf(' e(')>0) return 'e'
   if (str.indexOf(' generateData(') > 0) {
     return 'generateData'
@@ -14,11 +13,10 @@ function detectFunctionName(str) {
   const length = str.length
   for (let index = 7; index < length; index++) {
     let s = str.charAt(index) + ''
-   // console.log(s)
+
     if (spaceStart) {
       if (nameStart) {
         if (s == '(') {
-         // console.log('find')
           break
         } else {
           name += s
@@ -32,7 +30,7 @@ function detectFunctionName(str) {
     } else {
       if (s == ' ') {
         spaceStart = true
-       // console.log(s)
+    
       }
     }
   }
