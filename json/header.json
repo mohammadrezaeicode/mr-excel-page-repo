@@ -1,0 +1,34 @@
+[
+  {
+    "label": "ID",
+    "text": "ID"
+  },
+  {
+    "label": "FirstName",
+    "text": "First Name"
+  },
+  {
+    "label": "LastName",
+    "text": "Last Name"
+  },
+  {
+    "label": "Age",
+    "text": "Age"
+  },
+  {
+    "label": "Email",
+    "text": "Email"
+  },
+  {
+    "label": "PhoneNumber",
+    "text": "PhoneNumber"
+  },
+  {
+    "label": "Address",
+    "text": "Address"
+  },
+  {
+    "label": "Occupation",
+    "text": "Occupation"
+  }
+]
