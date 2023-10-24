@@ -12,15 +12,15 @@ export const ex10 = (() => {
       }
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: '6A2C70',
+      color: '6A2C70',
       ...rowAlignment
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: '#FFFFFF'
+      color: '#FFFFFF'
     }
     return {
       imageFullName: 'ex10.PNG',
@@ -30,18 +30,18 @@ export const ex10 = (() => {
         creator: 'mr',
         styles: {
           'c0<0.3': {
-            fg: 'DCD6F7',
-            fontColor: '424874s',
+            backgroundColor: 'DCD6F7',
+            color: '424874s',
             ...rowAlignment
           },
           male: {
-            fg: '95E1D3',
-            fontColor: '252A34',
+            backgroundColor: '95E1D3',
+            color: '252A34',
             ...rowAlignment
           },
           female: {
-            fg: 'F38181',
-            fontColor: '252A34',
+            backgroundColor: 'F38181',
+            color: '252A34',
             ...rowAlignment
           },
           rowStyle: {
@@ -108,15 +108,15 @@ export const ex11 = (() => {
       }
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: '6A2C70',
+      color: '6A2C70',
       ...rowAlignment
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: '#FFFFFF'
+      color: '#FFFFFF'
     }
     return {
       imageFullName: 'ex11.PNG',
@@ -127,18 +127,18 @@ export const ex11 = (() => {
         creator: 'mr',
         styles: {
           'c0<0.3': {
-            fg: 'DCD6F7',
-            fontColor: '424874s',
+            backgroundColor: 'DCD6F7',
+            color: '424874s',
             ...rowAlignment
           },
           male: {
-            fg: '95E1D3',
-            fontColor: '252A34',
+            backgroundColor: '95E1D3',
+            color: '252A34',
             ...rowAlignment
           },
           female: {
-            fg: 'F38181',
-            fontColor: '252A34',
+            backgroundColor: 'F38181',
+            color: '252A34',
             ...rowAlignment
           },
           rowStyle: {
@@ -215,15 +215,15 @@ export const ex13 = (() => {
       }
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: '6A2C70',
+      color: '6A2C70',
       ...rowAlignment
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: '#FFFFFF'
+      color: '#FFFFFF'
     }
     return {
       imageFullName: 'ex14.PNG',
@@ -234,18 +234,18 @@ export const ex13 = (() => {
         creator: 'mr',
         styles: {
           'c0<0.3': {
-            fg: 'DCD6F7',
-            fontColor: '424874s',
+            backgroundColor: 'DCD6F7',
+            color: '424874s',
             ...rowAlignment
           },
           male: {
-            fg: '95E1D3',
-            fontColor: '252A34',
+            backgroundColor: '95E1D3',
+            color: '252A34',
             ...rowAlignment
           },
           female: {
-            fg: 'F38181',
-            fontColor: '252A34',
+            backgroundColor: 'F38181',
+            color: '252A34',
             ...rowAlignment
           },
           rowStyle: {
@@ -339,8 +339,8 @@ export const ex15 = (() => {
   function generateData() {
     const t = { c4: '00ADB5', c2: '393E46' },
       n = { alignment: { horizontal: 'left', vertical: 'center' } },
-      a = { fg: t.c2, fontFamily: 'Times New Roman', fontColor: '6A2C70', ...n },
-      l = { fg: t.c4, fontFamily: 'Times New Roman', fontColor: '#000000' }
+      a = { backgroundColor: t.c2, fontFamily: 'Times New Roman', color: '6A2C70', ...n },
+      l = { backgroundColor: t.c4, fontFamily: 'Times New Roman', color: '#000000' }
     return {
       imageFullName: 'ex16.PNG',
       colorPalette: t,
@@ -350,22 +350,22 @@ export const ex15 = (() => {
         creator: 'mr',
         styles: {
           col2: {
-            fontColor: '#F9ED69'
+            color: '#F9ED69'
           },
           col1: {
-            fontColor: '#FF2E63'
+            color: '#FF2E63'
           },
           title: {
             size: 48,
-            fg: 'F9ED69',
-            fontColor: '6A2C70',
+            backgroundColor: 'F9ED69',
+            color: '6A2C70',
             alignment: { horizontal: 'center', vertical: 'center' }
           },
-          t2: { fontColor: 'F08A5D' },
-          t1: { fontColor: '555555' },
-          'c0<0.3': { fg: 'DCD6F7', fontColor: '424874s', ...n },
-          male: { fg: '95E1D3', fontColor: '252A34', ...n },
-          female: { fg: 'F38181', fontColor: '252A34', ...n },
+          t2: { color: 'F08A5D' },
+          t1: { color: '555555' },
+          'c0<0.3': { backgroundColor: 'DCD6F7', color: '424874s', ...n },
+          male: { backgroundColor: '95E1D3', color: '252A34', ...n },
+          female: { backgroundColor: 'F38181', color: '252A34', ...n },
           rowStyle: { ...a },
           headerStyle: { ...l }
         },
@@ -519,15 +519,15 @@ export const ex14 = (() => {
       }
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: '6A2C70',
+      color: '6A2C70',
       ...rowAlignment
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: '#000000'
+      color: '#000000'
     }
     return {
       imageFullName: 'ex15.PNG',
@@ -539,7 +539,7 @@ export const ex14 = (() => {
         styles: {
           title: {
             size: 48,
-            fg: 'E5BA73',
+            backgroundColor: 'E5BA73',
             alignment: {
               horizontal: 'center',
               vertical: 'center'
@@ -547,24 +547,24 @@ export const ex14 = (() => {
           },
           t2: {
             size: 40,
-            fontColor: 'FFFFFF'
+            color: 'FFFFFF'
           },
           t1: {
-            fontColor: '555555'
+            color: '555555'
           },
           'c0<0.3': {
-            fg: 'DCD6F7',
-            fontColor: '424874s',
+            backgroundColor: 'DCD6F7',
+            color: '424874s',
             ...rowAlignment
           },
           male: {
-            fg: '95E1D3',
-            fontColor: '252A34',
+            backgroundColor: '95E1D3',
+            color: '252A34',
             ...rowAlignment
           },
           female: {
-            fg: 'F38181',
-            fontColor: '252A34',
+            backgroundColor: 'F38181',
+            color: '252A34',
             ...rowAlignment
           },
           rowStyle: {
@@ -874,7 +874,7 @@ export const ex1 = (function () {
       modified: '2023-08-06T07:22:40Z',
       styles: {
         formulaStyle: {
-          fg: colorPalette.c3,
+          backgroundColor: colorPalette.c3,
           border: {
             full: {
               style: 'medium',
@@ -883,13 +883,13 @@ export const ex1 = (function () {
           }
         },
         headerStyle: {
-          fg: colorPalette.c1,
-          fontColor: colorPalette.c2,
+          backgroundColor: colorPalette.c1,
+          color: colorPalette.c2,
           bold: true
         },
         rowStyle: {
-          fg: colorPalette.c2,
-          fontColor: colorPalette.c1
+          backgroundColor: colorPalette.c2,
+          color: colorPalette.c1
         }
       },
       sheet: [
@@ -1150,15 +1150,15 @@ export const ex3 = (() => {
         creator: 'mr',
         styles: {
           headerStyle: {
-            fg: colorPalette.c2,
+            backgroundColor: colorPalette.c2,
             fontFamily: 'Times New Roman',
-            fontColor: colorPalette.c4,
+            color: colorPalette.c4,
             size: 20
           },
           formulaStyle: {
-            fg: colorPalette.c1,
+            backgroundColor: colorPalette.c1,
             fontFamily: 'Times New Roman',
-            fontColor: colorPalette.c3,
+            color: colorPalette.c3,
             size: 15
           }
         },
@@ -1271,15 +1271,15 @@ export const ex4 = (() => {
         creator: 'mr',
         styles: {
           headerStyle: {
-            fg: colorPalette.c1,
+            backgroundColor: colorPalette.c1,
             fontFamily: 'Times New Roman',
-            fontColor: colorPalette.c2
+            color: colorPalette.c2
             // size: 20
           },
           customFormulaStyle: {
-            fg: colorPalette.c2,
+            backgroundColor: colorPalette.c2,
             fontFamily: 'Times New Roman',
-            fontColor: colorPalette.c1,
+            color: colorPalette.c1,
             size: 15,
             border: {
               full: {
@@ -1289,9 +1289,9 @@ export const ex4 = (() => {
             }
           },
           formulaStyle: {
-            fg: colorPalette.c1,
+            backgroundColor: colorPalette.c1,
             fontFamily: 'Times New Roman',
-            fontColor: colorPalette.c2,
+            color: colorPalette.c2,
             size: 15,
             border: {
               full: {
@@ -1411,14 +1411,14 @@ export const ex5 = (() => {
       c4: 'DCD7C9'
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: colorPalette.c4
+      color: colorPalette.c4
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: colorPalette.c2
+      color: colorPalette.c2
     }
     return {
       url: 'https://colorhunt.co/palette/ffcfdffefdcae0f9b5a5dee5',
@@ -1568,9 +1568,9 @@ export const ex6 = (() => {
       c4: 'F9F7F7'
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: colorPalette.c4,
+      color: colorPalette.c4,
       border: {
         full: {
           style: 'medium',
@@ -1583,9 +1583,9 @@ export const ex6 = (() => {
       }
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: colorPalette.c2
+      color: colorPalette.c2
     }
     const merge = []
     let mergeStart = false
@@ -1760,18 +1760,18 @@ export const ex7 = (() => {
       c2: 'AEE1E1'
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: '112D4E',
+      color: '112D4E',
       alignment: {
         horizontal: 'left',
         vertical: 'top'
       }
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: '112D4E'
+      color: '112D4E'
     }
     return {
       imageFullName: 'ex7.PNG',
@@ -1957,18 +1957,18 @@ export const ex8 = (() => {
       c2: 'F9ED69'
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: '6A2C70',
+      color: '6A2C70',
       alignment: {
         horizontal: 'left',
         vertical: 'center'
       }
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: '6A2C70'
+      color: '6A2C70'
     }
     return {
       imageFullName: 'ex8.PNG',
@@ -2178,15 +2178,15 @@ export const ex9 = (() => {
       }
     }
     const rowStyle = {
-      fg: colorPalette.c2,
+      backgroundColor: colorPalette.c2,
       fontFamily: 'Times New Roman',
-      fontColor: '6A2C70',
+      color: '6A2C70',
       ...rowAlignment
     }
     const headerStyle = {
-      fg: colorPalette.c4,
+      backgroundColor: colorPalette.c4,
       fontFamily: 'Times New Roman',
-      fontColor: '#FFFFFF'
+      color: '#FFFFFF'
     }
     return {
       imageFullName: 'ex9.PNG',
@@ -2196,18 +2196,18 @@ export const ex9 = (() => {
         creator: 'mr',
         styles: {
           'c0<0.3': {
-            fg: 'DCD6F7',
-            fontColor: '424874s',
+            backgroundColor: 'DCD6F7',
+            color: '424874s',
             ...rowAlignment
           },
           male: {
-            fg: '95E1D3',
-            fontColor: '252A34',
+            backgroundColor: '95E1D3',
+            color: '252A34',
             ...rowAlignment
           },
           female: {
-            fg: 'F38181',
-            fontColor: '252A34',
+            backgroundColor: 'F38181',
+            color: '252A34',
             ...rowAlignment
           },
           rowStyle: {

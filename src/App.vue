@@ -1,12 +1,7 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-// import {
-// RouterLink,
-//   RouterView
-// } from 'vue-router'
+import { onMounted, ref, watch } from 'vue'
 import NavItems from '@/components/nav/NavItems.vue'
 import SubNavItem from '@/components/nav/SubNavItem.vue'
-
 const drawer = ref(window.innerWidth >= 1280)
 import ExcelTable from 'mr-excel'
 window.global = ExcelTable
@@ -16,42 +11,27 @@ import { useSelectStore } from '@/stores/select'
 import HomeView from '@/views/HomeView.vue'
 import ExampleView from '@/views/ExampleView.vue'
 import ApiView from './views/ApiView.vue'
+import { useDisplay } from 'vuetify'
+import Playground from './views/Playground.vue';
+import PlaygroundNav from './components/nav/PlaygroundNav.vue';
+
+const { mobile } = useDisplay()
 
 const select = useSelectStore()
 onMounted(() => {
   select.setNavBar(0)
 })
-// import HelloWorld from './components/HelloWorld.vue'
+console.log(this)
+watch(() => select.navIndex, async () => {
+  if (mobile.value) {
+    drawer.value = false
+  }
+})
 </script>
-
 <template>
   <v-app id="inspire">
-    <!-- <v-system-bar>
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar> -->
-
-    <!-- <v-navigation-drawer color="grey-lighten-3" rail>
-      <v-avatar class="d-block text-center mx-auto mt-4" color="grey-darken-1" size="36"></v-avatar>
-
-      <v-divider class="mx-3 my-5"></v-divider>
-
-      <v-avatar
-        v-for="n in 6"
-        :key="n"
-        class="d-block text-center mx-auto mb-9"
-        color="grey-lighten-1"
-        size="28"
-      ></v-avatar>
-    </v-navigation-drawer> -->
-
-    <v-navigation-drawer v-model="drawer" width="244" class="mt-0 pt-12">
-      <v-sheet color="grey-lighten-5" class="d-flex flex-column justify-center" height="128" width="100%">
+    <v-navigation-drawer elevation="5" v-model="drawer" width="244" class="mt-0 pt-12 bg-v1">
+      <v-sheet class="d-flex flex-column justify-center bg-v1" height="128" width="100%">
         <svg style="height: 100%; border-radius: 5px" viewBox="0 0 294 229" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <rect y="0.995667" width="65" height="228.004" fill="#FFC7C7" />
@@ -83,62 +63,37 @@ onMounted(() => {
           </div>
         </v-list-item>
       </v-list>
-      <!-- <v-list>
-        <v-list-item v-for="n in 5" :key="n"  link>
-        <div class="ml-2">test</div>
-        </v-list-item>
-      </v-list> -->
     </v-navigation-drawer>
-
-    <!-- <v-app-bar class="px-3" color="grey-lighten-4"  flat height="72">
-      <v-spacer></v-spacer>
-
-      <v-responsive max-width="156">
-        <v-text-field
-          bg-color="grey-lighten-2"
-          class="rounded-pill overflow-hidden"
-          density="compact"
-          hide-details
-          variant="solo"
-        ></v-text-field>
-      </v-responsive>
-    </v-app-bar> -->
-    <!-- class="pt-0" style="margin-top: var(--v-layout-top)" -->
+    <v-navigation-drawer data-hint="2" data-message="This panel include some of option that can be useed in mr-excel."
+      data-message-dir="l" location="right">
+      <v-list><v-list-item>
+          <div class="ma-3">
+            <SubNavItem v-if="select.navIndex < 3"></SubNavItem>
+            <PlaygroundNav v-else-if="select.navIndex == 3"></PlaygroundNav>
+          </div>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <div class="ma-0 pa-0">
       <div class="w-100" style="position: sticky;top: 0;">
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </div>
       <v-main>
-        <!-- <RouterView /> -->
         <HomeView v-if="select.navIndex == 0"></HomeView>
         <ExampleView v-else-if="select.navIndex == 1"></ExampleView>
         <ApiView v-else-if="select.navIndex == 2"></ApiView>
+        <Playground v-else-if="select.navIndex == 3"></Playground>
         <p v-else>loading...</p>
       </v-main>
     </div>
-
-    <v-navigation-drawer location="right">
-      <v-list><v-list-item>
-          <div class="ma-3">
-            <SubNavItem></SubNavItem>
-          </div>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
     <v-footer app height="72">
       <v-chip>
-        2.10.0
+        3.0.0
       </v-chip>
     </v-footer>
   </v-app>
 </template>
-
 <style scoped>
-/* ul {
-  margin-left: 15px;
-} */
-
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -195,7 +150,6 @@ nav a:first-of-type {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }

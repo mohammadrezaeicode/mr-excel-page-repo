@@ -6,16 +6,69 @@ body {
   box-sizing: border-box;
 }
 
-:root{
-  --c1:#EEEEEE;
-  --c2:#00ADB5;
-  --c3:#393E46;
-  --c4:#222831;
-  --c5:#14ecf840;
+:root {
+  --c1: #eeeeee;
+  --c2: #952323;
+  --c3: #393e46;
+  --c4: #222831;
+  --c5: #a247474c;
+  --v1: #f6f4eb;
+  --v2: #f0f0f0;
+  --v3: #e2c799;
+  --v4: #f2ecbe;
+  --c2-unv: #00adb5;
 }
-h2{
+h2 {
   margin-top: 2rem;
 }
-h3{
+h3 {
   margin-top: 0.5rem;
+}
+.bg-v1 {
+  background-color: var(--v1) !important;
+}
+.bg-v2 {
+  background-color: var(--v2) !important;
+}
+.c-v2 {
+  color: var(--v2) !important;
+}
+.c-c2 {
+  color: var(--c2) !important;
+}
+.bg-v3 {
+  background-color: var(--v3) !important;
+}
+.bg-v4 {
+  background-color: var(--v4) !important;
+}
+a:link {
+  color: var(--c2);
+}
+a:visited {
+  color: var(--c2-unv);
+}
+td,
+th {
+  color: white;
+}
+
+.node-hint {
+  z-index: 1010 !important;
+}
+
+.triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-left: 10px solid #fff;
+	border-bottom: 5px solid transparent;
+}
+
+.triangle-up {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid #fff;
 }

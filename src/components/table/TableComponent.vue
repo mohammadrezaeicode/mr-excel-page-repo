@@ -3,14 +3,14 @@
     <div class="p-1 mx-auto p-table mt-2 mb-5">
       <table>
         <tr class="he">
-          <th class="px-3 py-1">Name</th>
-          <th class="px-3 py-1">type</th>
-          <th class="px-3 py-1">Description</th>
+          <th class="px-3 py-2">Name</th>
+          <th class="px-3 py-2">type</th>
+          <th class="px-3 py-2">Description</th>
         </tr>
         <tr v-for="(row, key) in prop.rows" :key="row.name + 'key' + key">
-          <td class="px-3 py-1" v-html="row.name"></td>
-          <td class="px-3 py-1" v-html="row.type"></td>
-          <td class="px-3 py-1" v-html="row.des"></td>
+          <td class="px-3 py-2" v-html="row.name"></td>
+          <td class="px-3 py-2" v-html="row.type"></td>
+          <td class="px-3 py-2" v-html="row.des"></td>
         </tr>
       </table>
     </div>
@@ -32,7 +32,6 @@ const prop = defineProps(['name', 'rows'])
 }
 .he th {
   font-weight: bolder;
-  color: var(--c4);
   text-align: start;
 }
 </style>

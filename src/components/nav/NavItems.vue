@@ -10,30 +10,19 @@
         {{ navitem.name }}
       </div> -->
       <ul v-if="openSection[jIndex]">
-        <li
-          v-for="(item, index) in navitem.childs"
-          :key="item.name + '' + index"
-          :style="{
-            background: select.navIndex == index ? 'var(--c5)' : ''
-          }"
-          :class="[
-            'tes',
-            {
-              selected: select.navIndex == index
-            }
-          ]"
-        >
-          <span class="pl-uniqe"
-            ><v-btn
-              class="mn-uniqe w-100"
-              style="text-transform: none"
-              :color="select.navIndex == index ? 'var(--c2)' : ''"
-              variant="text"
-              @click.prevent="changeSelected(index, 0, item.path)"
-            >
+        <li v-for="(item, index) in navitem.childs" :key="item.name + '' + index" :style="{
+          background: select.navIndex == index ? 'var(--c5)' : ''
+        }" :class="[
+  'tes',
+  {
+    selected: select.navIndex == index
+  }
+]">
+          <span class="pl-uniqe"><v-btn class="mn-uniqe w-100" style="text-transform: none"
+              :color="select.navIndex == index ? 'var(--c2)' : ''" variant="text"
+              @click.prevent="changeSelected(index, 0, item.path)">
               {{ item.name }}
-            </v-btn></span
-          >
+            </v-btn></span>
         </li>
       </ul>
     </li>
@@ -47,23 +36,18 @@ import { ref } from 'vue'
 import { useSelectStore } from '@/stores/select'
 // const props = defineProps(['name', 'items'])
 const select = useSelectStore()
+// console.log()
 const navItems = ref([
   {
     name: 'interduction',
-    childs: [
-      {
-        name: 'Introduction',
-        path: '/'
-      },
-      {
-        name: 'Examples',
-        path: '/examples'
-      },
-      {
-        name: 'API',
-        path: '/api'
-      }
-    ]
+    childs: select.listOfNavItems.reduce((result, current) => {
+      console.log(current)
+      let name = current[0].name;
+      return [...result, {
+        name,
+        path: name.toLowerCase()
+      }]
+    }, [])
   }
   // {
   //   name: 'setup',
@@ -95,19 +79,24 @@ let openSection = ref({
 li {
   list-style: none;
 }
+
 .clickable {
   cursor: pointer;
   user-select: none;
 }
+
 li.tes {
   border-left: 1px solid var(--c1);
 }
+
 li.tes.selected {
   border-left: 1px solid var(--c2);
 }
+
 .pl-uniqe {
   padding-left: 40px;
 }
+
 .mn-uniqe {
   margin-left: -40px;
 }
@@ -129,4 +118,5 @@ li.tes.selected {
   justify-content: unset !important;
   grid-area: none !important;
 }
+
 </style>

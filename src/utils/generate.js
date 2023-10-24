@@ -1,9 +1,9 @@
-import * as prettier from 'https://unpkg.com/prettier@3.0.1/standalone.mjs'
-import prettierPluginBabel from 'https://unpkg.com/prettier@3.0.1/plugins/babel.mjs'
-import prettierPluginEstree from 'https://unpkg.com/prettier@3.0.1/plugins/estree.mjs'
-import prettierPluginHtml from 'https://unpkg.com/prettier@3.0.1/plugins/html.mjs'
+import * as prettier from 'https://unpkg.com/prettier@3.0.3/standalone.mjs'
+import prettierPluginBabel from 'https://unpkg.com/prettier@3.0.3/plugins/babel.mjs'
+import prettierPluginEstree from 'https://unpkg.com/prettier@3.0.3/plugins/estree.mjs'
+import prettierPluginHtml from 'https://unpkg.com/prettier@3.0.3/plugins/html.mjs'
 function detectFunctionName(str) {
-  if (str.indexOf(' e(')>0) return 'e'
+  if (str.indexOf(' e(') > 0) return 'e'
   if (str.indexOf(' generateData(') > 0) {
     return 'generateData'
   }
@@ -30,13 +30,12 @@ function detectFunctionName(str) {
     } else {
       if (s == ' ') {
         spaceStart = true
-    
       }
     }
   }
   return name
 }
-async function formatString(str) {
+export async function formatString(str) {
   let p = await prettier.format(str, {
     parser: 'babel',
     plugins: [prettierPluginBabel, prettierPluginEstree, prettierPluginHtml]
@@ -44,7 +43,7 @@ async function formatString(str) {
   return p
 }
 export function generateExample(example) {
-  if(example.mode=='convert'){
+  if (example.mode == 'convert') {
     return example.str
   }
   let colorString = ''

@@ -1,7 +1,7 @@
 !
 <template>
   <div class="mx-0 px-0 d-flex flex-column">
-    <div class="code-display d-flex flex-column mt-2 mb-5" ref="root">
+    <div class="code-display d-flex flex-column mt-2 mb-5 text-white" ref="root">
       <div class="px-7 type-header">
         {{ type }}
       </div>
@@ -9,25 +9,22 @@
         <div class="ml-auto"></div>
         <v-tooltip text="Show code" location="top" v-if="!notShowHiddien">
           <template v-slot:activator="{ props }">
-
             <span v-bind="props" class="icons" @click="changeCodeDisplay">
-              <v-icon color="var(--c3)" icon="mdi-chevron-up" v-if="displayCode"></v-icon>
-              <v-icon color="var(--c3)" icon="mdi-code-tags" v-else></v-icon>
+              <v-icon icon="mdi-chevron-up" v-if="displayCode"></v-icon>
+              <v-icon icon="mdi-code-tags" v-else></v-icon>
             </span>
           </template>
         </v-tooltip>
         <v-tooltip text="Copy Source" location="top">
           <template v-slot:activator="{ props }">
-
             <span v-bind="props" class="icons" @click="copyClipboard">
               <v-icon large icon="mdi-content-copy" v-if="!inCopyMode"></v-icon>
               <v-icon large icon="mdi-check" v-else></v-icon>
             </span>
           </template>
         </v-tooltip>
-        <v-tooltip text="Download result" location="top" v-if="exampleObject">
+        <v-tooltip text="Download result" location="top" v-if="exampleObject || forceDownload">
           <template v-slot:activator="{ props }">
-
             <span v-bind="props" class="icons" @click="generateExcel">
               <v-icon large icon="mdi-download"></v-icon>
             </span>
@@ -56,21 +53,22 @@
           </v-card>
         </v-dialog>
       </div>
-      <div class="code-content px-7 py-5" v-if="displayCode || !(exampleObject && exampleObject.imageFullName)">
-        <pre>
+      <div class="code-content px-7 py-5">
+        <pre v-if="displayCode || !(exampleObject && exampleObject.imageFullName)">
 <code>{{ stringCode }}</code>
 </pre>
+        <img class="d-flex mx-auto" height="250" :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
+          v-if="exampleObject && exampleObject.imageFullName && !displayCode" />
       </div>
     </div>
-    <img class="mx-auto" height="250" :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
-      v-if="exampleObject && exampleObject.imageFullName && !displayCode" />
+    <!-- <img class="mx-auto" height="250" :src="'/mr-excel-page/img/' + exampleObject.imageFullName"
+      v-if="exampleObject && exampleObject.imageFullName && !displayCode" /> -->
   </div>
 </template>
-
 <script setup>
 import ExcelTable from 'mr-excel'
 import { ref } from 'vue'
-let props = defineProps(['stringCode', 'type', 'exampleObject', 'notShowHiddien'])
+let props = defineProps(['stringCode', 'type', 'exampleObject', 'notShowHiddien', 'forceDownload'])
 const root = ref(null)
 const dialog = ref(false)
 const inCopyMode = ref(false)
@@ -86,7 +84,9 @@ function copyClipboard() {
   navigator.clipboard.writeText(props.stringCode)
 }
 function generateExcel() {
-  if (props.exampleObject.mode == 'convert') {
+  if (props.forceDownload) {
+    eval(props.stringCode)
+  } else if (props.exampleObject.mode == 'convert') {
     ExcelTable.convertTableToExcel(props.exampleObject.query, null, props.exampleObject.keepStyle)
   } else {
     if (props.exampleObject.data && props.exampleObject.data.notSave) {
@@ -101,8 +101,13 @@ function generateExcel() {
   }
 }
 </script>
-
 <style scoped>
+.image-ccode {
+  background-color: var(--c2);
+  border: 1px solid var(--c1);
+  border-radius: 4px;
+}
+
 .icons {
   cursor: pointer;
   user-select: none;
@@ -177,5 +182,4 @@ pre {
   margin: 0;
   white-space: pre-wrap;
   font-size: 14px;
-}
-</style>
+}</style>

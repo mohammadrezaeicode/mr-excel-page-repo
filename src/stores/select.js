@@ -57,14 +57,14 @@ const listOfNavItems = [
     {
       name: 'API',
       childs: [
-        { mainId: 0, href: '#excel-table-object', name: 'ExcelTable Object' },
-        { mainId: 1, href: '#styles-object', name: 'Styles Object' },
-        { mainId: 2, href: '#sheet-object', name: 'Sheet Object' },
-        { mainId: 3, href: '#border-object', name: 'Border Object' },
-        { mainId: 4, href: '#formula-object', name: 'Formula Object' },
-        { mainId: 5, href: '#alignment-options', name: 'Alignment Object' },
-        { mainId: 6, href: '#side-by-side', name: 'Side by Side / Line by Line Object' }
+        { mainId: 0, href: '#interface', name: 'Data models' }
       ]
+    }
+  ],
+  [
+    {
+      name: 'Playground',
+      childs: [{ mainId: 0, href: '#play', name: 'Playground' }]
     }
   ]
 ]
@@ -73,7 +73,8 @@ export const useSelectStore = defineStore({
   state: () => ({
     navItems: [],
     navIndex: -1,
-    selected: 0
+    selected: 0,
+    listOfNavItems
   }),
 
   getters: {
