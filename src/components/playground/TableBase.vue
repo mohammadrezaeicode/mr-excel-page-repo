@@ -65,7 +65,7 @@
 
         </v-row>
         <div class="d-flex w-100">
-            <CodeSection data-hint="6" data-message="show number of shift left" data-message-dir="in" :forceDownload="true"
+            <CodeSection data-hint="6" data-message="result of playground" data-message-dir="in" :forceDownload="true"
                 class="w-100" :stringCode="result" :type="'javascript'" :notShowHiddien="true"></CodeSection>
             <!-- <code><pre v-text="result"></pre></code> -->
         </div>
