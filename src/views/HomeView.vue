@@ -59,10 +59,10 @@
     <CodeSection :stringCode="codes.npm" :type="'terminal/bash'" :notShowHiddien="true">
     </CodeSection>
     <p>Using <b>yarn</b>:</p>
-    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'" :notShowHiddien="true">
+    <CodeSection :stringCode="codes.yarn" :type="'terminal/bash'" :notShowHiddien="true">
     </CodeSection>
     <p>Alternatively, you have the option to use <b>pnpm</b>:</p>
-    <CodeSection :stringCode="codes.npm" :type="'terminal/bash'" :notShowHiddien="true">
+    <CodeSection :stringCode="codes.pnpm" :type="'terminal/bash'" :notShowHiddien="true">
     </CodeSection>
     <p>
       Choose the package manager that suits your workflow, and effortlessly bring the power of our
