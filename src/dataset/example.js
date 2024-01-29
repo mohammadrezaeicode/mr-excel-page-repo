@@ -55,7 +55,7 @@ export const ex10 = (() => {
           {
             shiftTop: 5,
             shiftLeft: 5,
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -161,7 +161,7 @@ export const ex11 = (() => {
               // styleId: '',
               text: 'Title'
             },
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -267,7 +267,7 @@ export const ex13 = (() => {
               consommeCol: 6,
               text: 'Title'
             },
-            commentCodition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
+            commentCondition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 let textDataC0 = data.text.charAt(0)
                 if (textDataC0.toUpperCase() != textDataC0) {
@@ -280,7 +280,7 @@ Header should start with ${textDataC0.toUpperCase()}`,
               }
               return false
             },
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -390,7 +390,7 @@ export const ex15 = (() => {
               styleId: 'title',
               text: 'Title 1'
             },
-            multiStyleConditin: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
+            multiStyleCondition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 let charList = data.text.match(/./g)
                 let result = charList.reduce(
@@ -446,7 +446,7 @@ export const ex15 = (() => {
                 return result.result
               }
             },
-            commentCodition: function (o, r, i, s, u, c) {
+            commentCondition: function (o, r, i, s, u, c) {
               if (c) {
                 let d = o.text.charAt(0)
                 if (d.toUpperCase() != d)
@@ -458,7 +458,7 @@ Header should start with ${d.toUpperCase()}`,
               }
               return !1
             },
-            styleCellCondition(o, r, i, s, u) {
+            styleCellCondition(o, r, s, i, u) {
               return u
                 ? 'headerStyle'
                 : i == 0 && o < 0.3
@@ -596,7 +596,7 @@ export const ex14 = (() => {
               styleId: 'title',
               text: 'Title'
             },
-            commentCodition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
+            commentCondition: function (data, object, headerKey, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 let textDataC0 = data.text.charAt(0)
                 if (textDataC0.toUpperCase() != textDataC0) {
@@ -609,7 +609,7 @@ Header should start with ${textDataC0.toUpperCase()}`,
               }
               return false
             },
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -903,7 +903,7 @@ export const ex1 = (function () {
               styleId: 'formulaStyle'
             }
           },
-          styleCellCondition: function (dataM, fullData, colIndex, rowIndex, fromHeader) {
+          styleCellCondition: function (dataM, fullData, rowIndex, colIndex, fromHeader) {
             if (fromHeader) {
               return 'headerStyle'
             } else {
@@ -1056,7 +1056,7 @@ export const ex2 = {
       {
         name: 'family record',
         tabColor: '#a1b4c6',
-        sortAndfilter: {
+        sortAndFilter: {
           mode: 'all'
         },
         protectionOption: {
@@ -1473,7 +1473,7 @@ export const ex5 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -1648,7 +1648,7 @@ export const ex6 = (() => {
                 }
               }
             },
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -1789,7 +1789,7 @@ export const ex7 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -1976,11 +1976,7 @@ export const ex8 = (() => {
       url: 'https://colorhunt.co/palette/f9ed69f08a5db83b5e6a2c70',
       data: {
         creator: 'mr',
-        mapSheetDataOption: {
-          hidden: 'notShow',
-          height: 'h',
-          outlineLevel: 'group'
-        },
+
         styles: {
           rowStyle: {
             ...rowStyle
@@ -1991,7 +1987,12 @@ export const ex8 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            mapSheetDataOption: {
+              hidden: 'notShow',
+              height: 'h',
+              outlineLevel: 'group'
+            },
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
@@ -2219,7 +2220,7 @@ export const ex9 = (() => {
         },
         sheet: [
           {
-            styleCellCondition(data, fullData, colIndex, rowIndex, fromHeader) {
+            styleCellCondition(data, fullData, rowIndex, colIndex, fromHeader) {
               if (fromHeader) {
                 return 'headerStyle'
               } else {
